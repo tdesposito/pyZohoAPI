@@ -1,13 +1,41 @@
-# pyZohoAPI - Pythonic access to the collection of Zoho REST APIs.
+## pyZohoAPI
+ **pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
+ * Books
+ * Checkout
+ * Expense
+ * Inventory
+ * Invoice
+ * Subscriptions
 
-## Basic usage
-```python
-from pyzohoapi import ZohoInventory
+### Installing pyZohoAPI
+<!-- start installation -->
 
-inventory = ZohoInventory("123456", "us", client_id="987654", client_secret="xxxxyyyy", refresh_token="1000.4242424242")
+You'll need at least **Python 3.6** to install pyZohoAPI.
 
-customer = inventory.Contact(email="test@example.com").one()
-
+Via PyPI:
+```console
+$ python -m pip install pyzohoapi
 ```
+<!-- end installation -->
 
-**Current version:** 0.1.0
+### Basic Usage
+
+<!-- start basic-usage -->
+```python
+>>> from pyzohoapi import ZohoInventory
+>>> apiParams = {
+... }
+>>> inventory = ZohoInventory("{your-orginization-id}", "{your-region}",
+...   client_id="{your-client-id}",
+...   client_secret="{your-client-secret}",
+...   refresh_token="{your-refresh-token}"
+... )
+>>> contact = inventory.Contact(email="test@example.com").First()
+>>> contact.IsLoaded
+True
+>>> contact.first_name
+'test'
+>>> contact.first_name = "Changed"
+>>> contact.Update()
+```
+<!-- end basic-usage -->

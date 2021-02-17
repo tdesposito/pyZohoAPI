@@ -36,7 +36,7 @@ def ZohoObjectFactory(name, nameform=None, idform=None, raw=False, required=[], 
 Account = ZohoObjectFactory("ChartOfAccount", idform="account")
 Bundle = ZohoObjectFactory("Bundle")
 CompositeItem = ZohoObjectFactory("CompositeItem", nameform="composite_item", idform="composite_item", mixins=[WithActivate])
-Contact = ZohoObjectFactory("Contact", mixins=[WithActivate])
+Contact = ZohoObjectFactory("Contact", mixins=[WithActivate, WithAddresses])
 CustomerPayment = ZohoObjectFactory("CustomerPayment", idform="payment")
 Document = ZohoObjectFactory("Document", raw=True)
 Invoice = ZohoObjectFactory("Invoice")

@@ -39,3 +39,6 @@ True
 >>> contact.Update()
 ```
 <!-- end basic-usage -->
+
+### Contributing
+Pull Requests gladly considered!

@@ -38,6 +38,8 @@ Inventory
 
 * Activate
 * Deactivate
+* UpdateBilling
+* UpdateShipping
 ```
 
 ## CustomerPayment

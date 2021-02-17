@@ -62,3 +62,25 @@ class WithVoid(_WithStatus):
             raise ZohoInvalidOpError("Void", self)
         self._mark('void')
         return self
+
+
+class _WithAspect:
+    def _updateAspect(self, aspect, aspect_id, data):
+        data = self._api.put(self._url_fragment(extraPath=[aspect, aspect_id]), data, "")
+        import pprint; pprint.pprint(data, indent=2)
+        if data['code'] == 0:
+            return True
+        return False
+
+
+class WithAddresses(_WithAspect):
+    def UpdateBilling(self):
+        if self._id and self._data:
+            self._updateAspect('address', self.billing_address.address_id, self.billing_address.to_python())
+            return self
+        raise ZohoInvalidOpError("UpdateBilling", self)
+    def UpdateShipping(self):
+        if self._id and self._data:
+            self._updateAspect('address', self.shipping_address.address_id, self.shipping_address.to_python())
+            return self
+        raise ZohoInvalidOpError("UpdateShipping", self)

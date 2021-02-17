@@ -10,7 +10,7 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
 #
@@ -28,6 +28,8 @@ import json
 import re
 
 from abc import ABCMeta, abstractmethod
+
+class KeyOrAttributeError(KeyError, AttributeError): pass
 
 
 SPLIT_REGEX = r"(?<!\\)(\.)"
@@ -263,7 +265,10 @@ class DottedDict(DottedCollection, collections.abc.MutableMapping):
         key = self.__keytransform__(k)
 
         if not isinstance(k, str) or not is_dotted_key(key):
-            return self.store[key]
+            try:
+                return self.store[key]
+            except KeyError as e:
+                raise KeyOrAttributeError(e)
 
         my_key, alt_key = split_key(key, 1)
         target = self.store[my_key]

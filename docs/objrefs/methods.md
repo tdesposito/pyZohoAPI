@@ -31,5 +31,21 @@ Deletes the image associated with an object.
 ## `Draft()`
 Marks an object as "Draft".
 
+## `UpdateBilling()`
+Updates the related Billing Address of the object.
+```{code-block} python
+>>> contact.billing_address.address = "123 New Street"
+>>> contact.UpdateBilling()
+Contact #9876543210987654321
+```
+
+## `UpdateShipping()`
+Updates the related Shipping Address of the object.
+```{code-block} python
+>>> contact.shipping_address.address = "123 New Street"
+>>> contact.UpdateShipping()
+Contact #9876543210987654321
+```
+
 ## `Void()`
 Marks an object as "Void".

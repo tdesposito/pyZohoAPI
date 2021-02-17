@@ -259,6 +259,11 @@ class ZohoObjectBase:
         else:
             return self._type
 
+    def get(self, key, default=None):
+        if self._id:
+            return self._data.get(key, default)
+        return default
+
     def Create(self, **qParams):
         """ Create this object in Zoho
 

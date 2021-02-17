@@ -43,6 +43,10 @@ The above are (I hope clearly) just examples and are not directly usable.
 There's no Zoho object called (as of this writing) "ObjectType".
 ```
 
+### `get()`
+Implements the `get()` semantics of a dictionary. Use this just like the native
+function.
+
 ### `Create()`
 ```{code-block} python
 item = inventory.Item()

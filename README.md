@@ -7,6 +7,8 @@
  * Invoice
  * Subscriptions
 
+[![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)
+
 ### Installing pyZohoAPI
 <!-- start installation -->
 
@@ -39,6 +41,8 @@ True
 >>> contact.Update()
 ```
 <!-- end basic-usage -->
+
+See the [full documetation on ReadTheDocs](https://pyzohoapi.readthedocs.io/en/latest/)
 
 ### Contributing
 Pull Requests gladly considered!

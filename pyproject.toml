@@ -34,6 +34,10 @@ search_template = "release = '{version}'"
 path = "pyzohoapi/__init__.py"
 search_template = "__version__ = '{version}'"
 
+[[tool.bumpytrack.file_replaces]]
+path = "README.md"
+search_template = "## pyZohoAPI (v{version})"
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"

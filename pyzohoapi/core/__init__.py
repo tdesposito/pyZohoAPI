@@ -227,7 +227,7 @@ class ZohoObjectBase:
                     self._data = DottedList(data.get(self._plural))
                 if data.get('page_context',{}).get('has_more_page'):
                     self._searchParams = searchParams
-                    self._nextpage = data['page_context']['page']
+                    self._nextpage = data['page_context']['page'] + 1
                 else:
                     self._nextpage = None
 

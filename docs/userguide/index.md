@@ -37,20 +37,20 @@ invoice.Approve()
 ```
 
 ## A Note on PEP8-Compliance
-Yes, I know, my function/property names aren't PEP8-compliant. This is
+Yes, I know, my method/property names aren't PEP8-compliant. This is
 intentional.
 
 Because each Zoho object field is exposed as an attribute of the corresponding
 Python object, and those are (1) lower_case_with_underscore and (2) could be the
 same as one of my function names and (3) are subject to add/change/delete by
-Zoho, I've decided to CamelCase my function and property names, to avoid
-potential collision with any field name Zoho has or will likely expose in their
+Zoho, I've decided to CamelCase my method and property names, to avoid
+potential collision with any field name Zoho has or will expose in their
 JSON responses.
 
 I thought about changing the mapping from Zoho's lower_case_with_underscore to
-CamelCase. That seems like more work than is needed, since the interface
-surface of the Python objects much smaller than the interface surface of the
-Zoho objects.
+CamelCase. That seems like more work than is needed, since the interface surface
+of the Python objects is much smaller than the interface surface of the Zoho
+objects.
 
 On the brighter side, the internals are PEP8ie.
 

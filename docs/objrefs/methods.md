@@ -1,16 +1,21 @@
 # Type-Specific Methods
 These methods are added to objects which support the corresponding semantics.
 
-Not every object has every one, or indeed any, of the below. Calling one of
-these methods on an object without support for it will raise a `KeyError`.
+Not every object has every one, or indeed any, of the below.
 
+```{warning}
+Due to how we implement the Zojo objects, calling one of these methods on an
+object without support for it will raise a `KeyError` rather than the more
+typical `AttributeError`. Please code appropriately.
+```
 ```{include} /snippets/seealso-zoho-api.markdown
 ```
 
-## `Activate()`
+## Alphabetically
+### `Activate()`
 Makes the object "Active".
 
-## `AddImage()`
+### `AddImage()`
 Add an image to an object.
 ```{code-block} python
 >>> imgname = "imagename.jpg"
@@ -19,19 +24,19 @@ Add an image to an object.
 ...   obj.AddImage(imgname, image.read(), mimetype)
 ```
 
-## `Confirm()`
+### `Confirm()`
 Marks an object as "Confirmed".
 
-## `Deactivate()`
+### `Deactivate()`
 Makes the object "Inactive".
 
-## `DeleteImage()`
+### `DeleteImage()`
 Deletes the image associated with an object.
 
-## `Draft()`
+### `Draft()`
 Marks an object as "Draft".
 
-## `UpdateBilling()`
+### `UpdateBilling()`
 Updates the related Billing Address of the object.
 ```{code-block} python
 >>> contact.billing_address.address = "123 New Street"
@@ -39,7 +44,7 @@ Updates the related Billing Address of the object.
 Contact #9876543210987654321
 ```
 
-## `UpdateShipping()`
+### `UpdateShipping()`
 Updates the related Shipping Address of the object.
 ```{code-block} python
 >>> contact.shipping_address.address = "123 New Street"
@@ -47,5 +52,5 @@ Updates the related Shipping Address of the object.
 Contact #9876543210987654321
 ```
 
-## `Void()`
+### `Void()`
 Marks an object as "Void".

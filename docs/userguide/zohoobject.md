@@ -49,18 +49,17 @@ function.
 
 ### `Create()`
 ```{code-block} python
-item = inventory.Item()
-item.name = "Test Item"
-item.rate = 42.00
-item.Create()
-if item.ID:
-  print(item.available_stock)
+>>> item = inventory.Item()
+>>> item.name = "Test Item"
+>>> item.rate = 42.00
+>>> item.Create()
+Item #9876543210987654321
 ```
 There is no checking to ensure all required fields are set, nor that any of the
-values make sense. If the object was created in Zoho, *self* gets an **ID** and
+values make sense. If the object was created in Zoho, *self* gets an `ID` and
 is updated with all default fields Zoho provided.
 
-Calling `Create()` on a not-New object is a No-Op.
+Calling `Create()` on a not-New object raises an exception.
 
 ### `Delete()`
 ```{code-block} python
@@ -77,15 +76,17 @@ None
 After deleting the object from Zoho, all the field data is still available in
 the Python object, so in theory you could re-create the object by calling
 `Create()`, or modify it and then re-create. YMMV. Of course, you'll get a
-new **ID** in that case.
+new `ID` in that case.
 
-Calling `Delete()` on a List-of or New object is a No-Op.
+Calling `Delete()` on a List-of or New object raises an exception.
 
 ### `First()`
 ```{code-block} python
-user = inventory.User(email="test@example.com").First()
-if user.IsLoaded:
-  print("Loaded the user")
+>>> user = inventory.User(email="test@example.com").First()
+>>> user.IsLoaded:
+True
+>>> user.email
+'test@example.com'
 ```
 `First()` returns the first object found by a search; if called on a new or
 mapped object, it returns *self*, so it's safe to use anywhere. Useful if you
@@ -137,8 +138,11 @@ Acme International
 We handle pagination of List-of objects transparently, so you can treat List-of
 objects as iterables:
 ```{code-block} python
-for invoice in inventory.Invoice(date="2021-01-01", status="paid"):
-  print(invoice.Number)
+>>> for invoice in inventory.Invoice(date="2021-01-01", status="paid"):
+...   invoice
+Invoice #9876543210987654321
+Invoice #9876543210987654322
+Invoice #9876543210987654323
 ```
 This has some potential drawbacks.
 
@@ -150,14 +154,17 @@ If you only need values from fields which are already in the search results,
 and you don't need to manipulate each individual object, use `Iter()`
 with the `raw` flag:
 ```{code-block} python
-paid_today = inventory.Invoice(date="2021-01-01", status="paid")
-for invoice in paid_today.Iter(raw=True):
-  print(invoice.invoice_number)
+>>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
+>>> for invoice in paid_today.Iter(raw=True):
+...   print(invoice.invoice_id)
+'9876543210987654321'
+'9876543210987654322'
+'9876543210987654323'
 ```
 
 ```{note}
-In the above example, we used the Zoho field name `invoice_number` rather
-than the object property `Number` because **we didn't retrieve an object**. Here
+In the above example, we used the Zoho field name `invoice_id` rather
+than the object property `ID` because **we didn't retrieve an object**. Here
 `invoice` is a dictionary which supports using '.' in addition to '[]' semantics
 for getting values.
 ```
@@ -165,33 +172,60 @@ for getting values.
 You can also filter the list using `Iter()`. The caveat is that the field(s)
 you're filtering on must exist in the search results:
 ```{code-block} python
-paid_today = inventory.Invoice(date="2021-01-01", status="paid")
-for invoice in paid_today.Iter(currency_code="USD", due_date="2021-02-28"):
-  print(invoice.Number)
+>>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
+>>> for invoice in paid_today.Iter(currency_code="USD", due_date="2021-02-28"):
+...   invoice
+Invoice #9876543210987654321
+Invoice #9876543210987654323
 ```
 
 If you need a more complex filter, pass a function as the first parameter:
 ```{code-block} python
-paid_today = inventory.Invoice(date="2021-01-01", status="paid")
-for invoice in paid_today.Iter(lambda inv: inv.total > 1000.00):
-  print(invoice.Number)
+>>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
+>>> for invoice in paid_today.Iter(lambda inv: inv.total > 1000.00):
+...   invoice
+Invoice #9876543210987654322
+Invoice #9876543210987654323
 ```
 
 ### `IterRelatedList()`
 For objects which include one or more lists of references to other object types,
 you can get each of those objects:
 ```{code-block} python
-for item in so.IterRelatedList(inventory.Item, 'line_items', 'item_id'):
-  print(item.name)
+>>> salesorder.line_items
+[{'item_id': "123", ...}, {'item_id': "345", ...}]
+>>> for item in salesorder.IterRelatedList(inventory.Item, 'line_items', 'item_id'):
+...   item
+Item #123
+Item #345
+```
+
+### `MapRelatedList()`
+For objects which include one or more lists of references to other object types,
+`MapRelatedList()` iterates over such a list, returning a composite object
+consisting of the data from the target list, and the related object. A (slightly
+simplified) example might help:
+```{code-block} python
+>>> salesorder.line_items
+[{'item_id': "123", ...}, {'item_id': "345", ...}]
+>>> for item in salesorder.IterRelatedList(api.Item, 'line_items', 'item_id'):
+...   item
+Item #123
+Item #345
+>>> for item in saleorder.MapRelatedList(api.Item, 'line_items', 'item_id'):
+...   item
+{'meta': {'item_id': "123", ...}, 'object': Item #123}
+{'meta': {'item_id': "345", ...}, 'object': Item #345}
 ```
 
 ### `Update()`
 Changes you make to the fields in an existing Zoho object are pushed into Zoho
 by calling `Update()`.
 ```{code-block} python
-salesorder.line_items.append({'item_id':"9876543210987654321", 'quantity': 2})
-salesorder.shipping_charges += 12.50
-salesorder.Update()
+>>> salesorder.line_items.append({'item_id':"9876543210987654321", 'quantity': 2})
+>>> salesorder.shipping_charges += 12.50
+>>> salesorder.Update()
+SalesOrder #9876543210987654321
 ```
 
 ## Object Properties
@@ -226,21 +260,25 @@ KeyError: 'item_number'
 ### `IsDeleted`
 *True* if the object has been deleted from Zoho. The data contained within the
 object is still available, except the object's native \*\_id field, which will
-be *None*. The `ID` property will be *False*.
+be *None*. The `ID` property will be *False*. See [`Delete()`](#delete).
 
 ### `IsList`
 *True* if the object is a List-of Zoho objects.
 ```{code-block} python
-so_list = inventory.SalesOrder(customer_id=...)
-if so_list.IsList:
-  doSomething(so_list)
+>>> inventory.SalesOrder(customer_id="9876543210987654321").IsList
+True
 ```
 
 ### `IsLoaded`
-*True* if we've loaded ANY data from Zoho. This is helpful for testing if an
+*True* if we've loaded data from Zoho. This is helpful for testing if an
 object was available in Zoho.
 ```{code-block} python
-so = inventory.SalesOrder(id)
-if so.IsLoaded:
-  doSomething(so)
+>>> inventory.SalesOrder(id).IsLoaded
+True
+>>> inventory.SalesOrder(bad_id).IsLoaded
+False
+>>> inventory.SalesOrder(customer_id="9876543210987654321").IsLoaded
+True
+>>> inventory.SalesOrder().IsLoaded
+False
 ```

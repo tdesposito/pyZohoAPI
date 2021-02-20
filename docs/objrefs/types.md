@@ -1,24 +1,24 @@
 # Type Reference
+
+```{include} /snippets/seealso-zoho-api.markdown
+```
+## Alphabetic
 This is an alphabetic of all the Zoho Object types we support, and the APIs
 which include them.
 
 We note which [additional methods](/objrefs/methods.md) each object type
 includes, if any.
-
-```{include} /snippets/seealso-zoho-api.markdown
-```
-
-## Account
+### Account
 ```{admonition} Chart-Of-Accounts
 Books, Inventory
 ```
 
-## Bundle
+### Bundle
 ```{admonition} Bundle
 Inventory
 ```
 
-## CompositeItem
+### CompositeItem
 ```{admonition} Composite Items
 Inventory
 ```
@@ -29,7 +29,7 @@ Inventory
 * Deactivate
 ```
 
-## Contact
+### Contact
 ```{admonition} Contacts
 Inventory
 ```
@@ -42,12 +42,12 @@ Inventory
 * UpdateShipping
 ```
 
-## CustomerPayment
+### CustomerPayment
 ```{admonition} Customer Payments
 Inventory
 ```
 
-## Document
+### Document
 ```{admonition} Documents
 Books, Inventory
 ```
@@ -61,12 +61,12 @@ The document content could be very large, and will be loaded into memory. Use
 with care.
 ```
 
-## Invoice
+### Invoice
 ```{admonition} Invoices
 Books, Inventory
 ```
 
-## Item
+### Item
 ```{admonition} Items
 Books, Inventory
 ```
@@ -79,7 +79,7 @@ Books, Inventory
 * DeleteImage
 ```
 
-## ItemGroup
+### ItemGroup
 ```{admonition} Item Groups
 Inventory
 ```
@@ -90,32 +90,32 @@ Inventory
 * Deactivate
 ```
 
-## Organization
+### Organization
 ```{admonition} Organizations
 Books, Inventory
 ```
 
-## Package
+### Package
 ```{admonition} Packages
 Inventory
 ```
 
-## PurchaseOrder
+### PurchaseOrder
 ```{admonition} Purchase Orders
 Books, Inventory
 ```
 
-## SalesOrder
+### SalesOrder
 ```{admonition} Sales Orders
 Books, Inventory
 ```
 
-## ShipmentOrder
+### ShipmentOrder
 ```{admonition} Shipment Orders
 Books, Inventory
 ```
 
-## User
+### User
 ```{admonition} Users
 Books, Inventory
 ```
@@ -124,4 +124,44 @@ Books, Inventory
 
 * Activate
 * Deactivate
+```
+
+## By Product
+
+### Books
+```{warning}
+Books support is still under development.
+```
+
+### Checkout
+```{include} ../snippets/todo-future-release.markdown
+```
+
+### Expense
+```{include} ../snippets/todo-future-release.markdown
+```
+
+### Inventory
+* [Account](#account)
+* [Bundle](#bundle)
+* [CompositeItem](#compositeitem)
+* [Contact](#contact)
+* [CustomerPayment](#customerpayment)
+* [Document](#document)
+* [Invoice](#invoice)
+* [Item](#item)
+* [ItemGroup](#itemgroup)
+* [Organization](#organization)
+* [Package](#package)
+* [PurchaseOrder](#purchaseorder)
+* [SalesOrder](#salesorder)
+* [ShipmentOrder](#shipmentorder)
+* [User](#user)
+
+### Invoice
+```{include} ../snippets/todo-future-release.markdown
+```
+
+### Subscriptions
+```{include} ../snippets/todo-future-release.markdown
 ```

@@ -7,6 +7,7 @@
  * Invoice
  * Subscriptions
 
+![GitHub](https://img.shields.io/github/license/tdesposito/pyZohoAPI)
 [![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)
 
 ### Installing pyZohoAPI
@@ -25,14 +26,12 @@ $ python -m pip install pyzohoapi
 <!-- start basic-usage -->
 ```python
 >>> from pyzohoapi import ZohoInventory
->>> apiParams = {
-... }
->>> inventory = ZohoInventory("{your-orginization-id}", "{your-region}",
+>>> api = ZohoInventory("{your-orginization-id}", "{your-region}",
 ...   client_id="{your-client-id}",
 ...   client_secret="{your-client-secret}",
 ...   refresh_token="{your-refresh-token}"
 ... )
->>> contact = inventory.Contact(email="test@example.com").First()
+>>> contact = api.Contact(email="test@example.com").First()
 >>> contact.IsLoaded
 True
 >>> contact.first_name

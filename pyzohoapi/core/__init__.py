@@ -356,9 +356,16 @@ class ZohoObjectBase:
     def IterRelatedList(self, targetType, listKey, idField):
         if self._id and self._data:
             for item in self._data.get(listKey, []):
-                yield targetType(self._api, item.get(idField))
+                yield targetType(item.get(idField))
         else:
             raise ZohoInvalidOpError("IterRelatedList", self)
+
+    def MapRelatedList(self, targetType, listKey, idField):
+        if self._id and self._data:
+            for item in self._data.get(listKey, []):
+                yield {'meta': item, 'object': targetType(item.get(idField))}
+        else:
+            raise ZohoInvalidOpError("MapRelatedList", self)
 
     def Update(self):
         if self._id and self._data:

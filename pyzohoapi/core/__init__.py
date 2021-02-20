@@ -296,9 +296,10 @@ class ZohoObjectBase:
         """
         if self._id:
             return self
+        if not self._data:
+            self._load()
         if self._data:
             return self.__class__(self._api, self._data[0][self._id_field])
-        # we may be an empty list; null us out so IsLoaded works correctly
         self._data = None
         return self
 

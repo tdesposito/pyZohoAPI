@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Interactive pyZohoAPI Interogation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cirrus-ui@0.6.1/dist/cirrus.min.css">
+    <link rel="stylesheet" href="/local.css">
+    <script type="text/javascript">
+      const rsp = {results}
+    </script>
+  </head>
+  <body class="">
+    <header>
+      <h1 class="u-text-center font-thin">
+        Interactive pyZohoAPI Interogation
+      </h1>
+    </header>
+    <main>
+      <div class="content font-thin">
+        <details>
+          <summary>Configuration</summary>
+          <form class="form frame p-2" method="post" action="?config">
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Org ID:</p></div>
+              <div class="col-10 ignore-screen level-item"><input type="text" name="orgid" class="input-xsmall" value="{orgid}"></div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Client ID:</p></div>
+              <div class="col-10 ignore-screen level-item"><input type="text" name="client_id" class="input-xsmall" value="{client_id}"></div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Client Secret:</p></div>
+              <div class="col-10 ignore-screen level-item"><input type="text" name="client_secret" class="input-xsmall" value="{client_secret}"></div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Refresh Token:</p></div>
+              <div class="col-10 ignore-screen level-item"><input type="text" name="refresh_token" class="input-xsmall" value="{refresh_token}"></div>
+            </div>
+          </form>
+        </details>
+        <details open id="param_container">
+          <summary>API-Level Query</summary>
+          <form class="form frame p-2" method="post">
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">API</p></div>
+              <div class="col-10 ignore-screen level-item">
+                <select class="select input-xsmall" onChange="onURLChange()"
+                  name="api" id="select_api">
+                  <option value="books">Books</option>
+                  <option value="inventory">Inventory</option>
+                </select>
+              </div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Type</p></div>
+              <div class="col-10 ignore-screen level-item">
+                <input type="text"
+                  class="input-xsmall" onChange="onURLChange()"
+                  name="type" id="select_type"
+                  value="{type}"></input>
+              </div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">ID</p></div>
+              <div class="col-10 ignore-screen level-item">
+                <input type="text"
+                  class="input-xsmall" onChange="onURLChange()"
+                  name="id" id="input_id"
+                  value="{id}"></input>
+              </div>
+            </div>
+            <!-- <div class="row ignore-screen level">
+            </div> -->
+            <!-- <div class="row ignore-screen level">
+            </div> -->
+            <div class="row ignore-screen level">
+              <div class="col-2 ignore-screen level-item"><p class="m-0">URL</p></div>
+              <div class="col-10 ignore-screen">
+                <code>https://<span id="url_api"></span>/<span id="url_type"></span>/<span id="url_id"></span></code>
+              </div>
+            </div>
+            <div class="row ignore-screen level">
+              <button type="submit" class="input-xsmall actionbutton"
+                name="action" value="get"
+                disabled>GET</button>
+              <!-- <button type="submit" class="input-xsmall" name="action" value="post">POST</button> -->
+              <!-- <button type="submit" class="input-xsmall" name="action" value="put">PUT</button> -->
+              <!-- <button type="submit" class="input-xsmall" name="action" value="delete">DELETE</button> -->
+            </div>
+          </form>
+        </details>
+        <details open id="results_container">
+          <summary>Response</summary>
+          <pre id="results" class="frame p-2">
+          </pre>
+        </details>
+      </div>
+    </main>
+    <footer class="footer u-text-center">
+      <p>
+        This page is part of <a href="https://github.com/tdesposito/pyZohoAPI"
+          target="_blank">pyZohoAPI <i class="fas fa-external-link-alt"></i></a>
+        <br>
+        Copyright &copy; 2021 Todd D. Esposito. Licensed under the
+        <a href="https://github.com/tdesposito/pyZohoAPI/blob/release/LICENSE"
+          target="_blank">MIT 3-Clause License <i class="fas fa-external-link-alt"></i>
+        </a>
+      </p>
+    </footer>
+  </body>
+  <script src="/local.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    select_api.value = '{api}'
+    onURLChange()
+    formatResults()
+  </script>
+</html>

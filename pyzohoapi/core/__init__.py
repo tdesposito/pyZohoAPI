@@ -108,7 +108,6 @@ class ZohoAPIBase:
                 else:
                     raise ZohoException(f"Encountered Zoho error #{d.get('code', 'unknown')} calling API")
 
-
     def delete(self, urlFragment):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}"
         rsp = self.do_request(requests.delete, url)

@@ -90,23 +90,24 @@ class ZohoAPIBase:
                     sleep(sleeptime)
                 else:
                     raise ZohoAPIThrottled()
-            # TODO: raise more specific exceptions here
             elif not rsp.ok:
+                # TODO: raise more specific exceptions here
                 raise ZohoException(f"Encountered #{rsp.status_code} error calling Zoho API")
             else:
-                d = rsp.json()
-                if d.get('code') == 0:
-                    self.update_rate_limit(rsp.headers)
-                    return rsp
-                elif d.get('code') == "43" and retries:    # Throttled
-                    retries -= 1
-                    sleeptime = int(rsp.headers.get('retry-after', self._api_keys['retry_backoff_seconds']))
-                    if sleeptime <= self._api_keys['max_retry_after']:
-                        sleep(sleeptime)
-                    else:
-                        raise ZohoAPIThrottled()
+                if rsp.headers['content-type'].startswith("application/json"):
+                    d = rsp.json()
+                    if d.get('code') == 0:
+                        self.update_rate_limit(rsp.headers)
+                        return rsp
+                    elif d.get('code') == "43" and retries:    # Throttled
+                        retries -= 1
+                        sleeptime = int(rsp.headers.get('retry-after', self._api_keys['retry_backoff_seconds']))
+                        if sleeptime <= self._api_keys['max_retry_after']:
+                            sleep(sleeptime)
+                        else:
+                            raise ZohoAPIThrottled()
                 else:
-                    raise ZohoException(f"Encountered Zoho error #{d.get('code', 'unknown')} calling API")
+                    return rsp
 
     def delete(self, urlFragment):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}"

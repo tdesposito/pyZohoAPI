@@ -1,10 +1,16 @@
+# This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
+# Distributed under the MIT License (see https://opensource.org/licenses/MIT).
+
 import sys
 sys.path.insert(0, "..")
 
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
+from os import system
+from pprint import pprint
 import signal
 import traceback
+import urllib
 
 from pyzohoapi import *
 from pyzohoapi.exceptions import ZohoException
@@ -23,6 +29,7 @@ blank_params = {
     'api': 'inventory',
     'type': "",
     'id': "",
+    'qparams': "",
     'results': {},
 }
 
@@ -64,17 +71,19 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         rawform = self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8')
         form = { k:v for k,v in [e.split("=") for e in rawform.split("&")] if v }
+        if 'qparams' in form:
+            form['qparams'] = urllib.parse.unquote_plus(form['qparams'])
         params.update(form)
         api = apiobjs.get(form['api'])
         if form['action'] == "get":
             frag = f"{form['type']}/{form.get('id','')}"
             try:
-                rsp = api.get(frag, "")
+                rsp = api.get(frag, params['qparams'])
                 params['results'] = json.dumps(rsp)
             except ZohoException as e:
                 params['results'] = json.dumps({
                     'Exception': {
-                        'classname': e.__class__.__name__,
+                        'class': e.__class__.__name__,
                         'message': str(e),
                         'traceback': [l for l in traceback.format_exc().split('\n')]
                     }
@@ -98,7 +107,9 @@ if __name__ == "__main__":
 
     print(f"Server started http://{hostName}:{serverPort}")
     print("Press Ctrl-C to exit.")
+    system("title pyZohoAPI Testing Server")
 
+    system(f"start http://{hostName}:{serverPort}")
     try:
         while True:
             sys.stdout.flush()

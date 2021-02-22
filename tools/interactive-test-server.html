@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
+Distributed under the MIT License (see https://opensource.org/licenses/MIT).
+-->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -73,23 +77,24 @@
                   value="{id}"></input>
               </div>
             </div>
-            <!-- <div class="row ignore-screen level">
-            </div> -->
-            <!-- <div class="row ignore-screen level">
-            </div> -->
             <div class="row ignore-screen level">
-              <div class="col-2 ignore-screen level-item"><p class="m-0">URL</p></div>
-              <div class="col-10 ignore-screen">
-                <code>https://<span id="url_api"></span>/<span id="url_type"></span>/<span id="url_id"></span></code>
+              <div class="col-2 ignore-screen level-item"><p class="m-0">Query Params</p></div>
+              <div class="col-10 ignore-screen level-item">
+                <input type="text"
+                  class="input-xsmall" onChange="onURLChange()"
+                  name="qparams" id="input_qparams"
+                  value="{qparams}"></input>
               </div>
             </div>
             <div class="row ignore-screen level">
-              <button type="submit" class="input-xsmall actionbutton"
-                name="action" value="get"
-                disabled>GET</button>
-              <!-- <button type="submit" class="input-xsmall" name="action" value="post">POST</button> -->
-              <!-- <button type="submit" class="input-xsmall" name="action" value="put">PUT</button> -->
-              <!-- <button type="submit" class="input-xsmall" name="action" value="delete">DELETE</button> -->
+              <div class="col-2 ignore-screen level-item">
+                <button type="submit" class="input-xsmall actionbutton"
+                  name="action" value="get"
+                  disabled>GET</button>
+              </div>
+              <div class="col-10 ignore-screen">
+                <code>https://<span id="url_api"></span>/<span id="url_type"></span>/<span id="url_id"></span><span id="url_qparams"></span></code>
+              </div>
             </div>
           </form>
         </details>
@@ -102,12 +107,12 @@
     </main>
     <footer class="footer u-text-center">
       <p>
-        This page is part of <a href="https://github.com/tdesposito/pyZohoAPI"
+        This tool is part of <a href="https://github.com/tdesposito/pyZohoAPI"
           target="_blank">pyZohoAPI <i class="fas fa-external-link-alt"></i></a>
         <br>
         Copyright &copy; 2021 Todd D. Esposito. Licensed under the
         <a href="https://github.com/tdesposito/pyZohoAPI/blob/release/LICENSE"
-          target="_blank">MIT 3-Clause License <i class="fas fa-external-link-alt"></i>
+          target="_blank">MIT License <i class="fas fa-external-link-alt"></i>
         </a>
       </p>
     </footer>

@@ -29,8 +29,10 @@ blank_params = {
     'api': 'inventory',
     'type': "",
     'id': "",
+    'xtrapath': "",
     'qparams': "",
     'results': {},
+    'apiinfo': {},
 }
 
 apiobjs = {
@@ -71,15 +73,17 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         rawform = self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8')
         form = { k:v for k,v in [e.split("=") for e in rawform.split("&")] if v }
-        if 'qparams' in form:
-            form['qparams'] = urllib.parse.unquote_plus(form['qparams'])
+        for k in ['qparams', 'xtrapath']:
+            if k in form:
+                form[k] = urllib.parse.unquote_plus(form[k])
         params.update(form)
         api = apiobjs.get(form['api'])
         if form['action'] == "get":
-            frag = f"{form['type']}/{form.get('id','')}"
+            frag = f"{form['type']}{'/' + form['id'] if form.get('id') else ''}{'/' + form['xtrapath'] if form.get('xtrapath') else ''}"
             try:
                 rsp = api.get(frag, params['qparams'])
                 params['results'] = json.dumps(rsp)
+                params['apiinfo'] = json.dumps({k:str(v) for k,v in api._ratelimit.items()})
             except ZohoException as e:
                 params['results'] = json.dumps({
                     'Exception': {

@@ -15,6 +15,7 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
     <link rel="stylesheet" href="/local.css">
     <script type="text/javascript">
       const rsp = {results}
+      const apirsp = {apiinfo}
     </script>
   </head>
   <body class="">
@@ -50,7 +51,7 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
           <summary>API-Level Query</summary>
           <form class="form frame p-2" method="post">
             <div class="row ignore-screen level">
-              <div class="col-2 ignore-screen level-item"><p class="m-0">API</p></div>
+              <div class="col-2 u-text-right"><p class="m-0">API</p></div>
               <div class="col-10 ignore-screen level-item">
                 <select class="select input-xsmall" onChange="onURLChange()"
                   name="api" id="select_api">
@@ -60,16 +61,17 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
               </div>
             </div>
             <div class="row ignore-screen level">
-              <div class="col-2 ignore-screen level-item"><p class="m-0">Type</p></div>
+              <div class="col-2 u-text-right required"><p class="m-0">Type</p></div>
               <div class="col-10 ignore-screen level-item">
                 <input type="text"
                   class="input-xsmall" onChange="onURLChange()"
                   name="type" id="select_type"
+                  required
                   value="{type}"></input>
               </div>
             </div>
             <div class="row ignore-screen level">
-              <div class="col-2 ignore-screen level-item"><p class="m-0">ID</p></div>
+              <div class="col-2 u-text-right"><p class="m-0">ID</p></div>
               <div class="col-10 ignore-screen level-item">
                 <input type="text"
                   class="input-xsmall" onChange="onURLChange()"
@@ -78,7 +80,16 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
               </div>
             </div>
             <div class="row ignore-screen level">
-              <div class="col-2 ignore-screen level-item"><p class="m-0">Query Params</p></div>
+              <div class="col-2 u-text-right"><p class="m-0">Addtl Path</p></div>
+              <div class="col-10 ignore-screen level-item">
+                <input type="text"
+                  class="input-xsmall" onChange="onURLChange()"
+                  name="xtrapath" id="input_xtrapath"
+                  value="{xtrapath}"></input>
+              </div>
+            </div>
+            <div class="row ignore-screen level">
+              <div class="col-2 u-text-right"><p class="m-0">Query Params</p></div>
               <div class="col-10 ignore-screen level-item">
                 <input type="text"
                   class="input-xsmall" onChange="onURLChange()"
@@ -93,7 +104,7 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
                   disabled>GET</button>
               </div>
               <div class="col-10 ignore-screen">
-                <code>https://<span id="url_api"></span>/<span id="url_type"></span>/<span id="url_id"></span><span id="url_qparams"></span></code>
+                <code>https://<span id="url_api"></span>/<span id="url_type"></span><span id="url_id"></span><span id="url_xtrapath"></span><span id="url_qparams"></span></code>
               </div>
             </div>
           </form>
@@ -101,6 +112,11 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
         <details open id="results_container">
           <summary>Response</summary>
           <pre id="results" class="frame p-2">
+          </pre>
+        </details>
+        <details id="apiinfo_container">
+          <summary>API Information</summary>
+          <pre id="apiinfo" class="frame p-2">
           </pre>
         </details>
       </div>

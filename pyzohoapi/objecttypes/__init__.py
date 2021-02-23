@@ -45,6 +45,6 @@ ItemGroup = ZohoObjectFactory("ItemGroup", idform="group", nameform="group", mix
 Organization = ZohoObjectFactory("Organization")
 Package = ZohoObjectFactory("Package")
 PurchaseOrder = ZohoObjectFactory("PurchaseOrder")
-SalesOrder = ZohoObjectFactory("SalesOrder")
+SalesOrder = ZohoObjectFactory("SalesOrder", mixins=[WithConfirm, WithVoid])
 ShipmentOrder = ZohoObjectFactory("ShipmentOrder", idform="shipment")
 User = ZohoObjectFactory("User", mixins=[WithActivate])

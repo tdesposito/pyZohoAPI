@@ -198,7 +198,10 @@ class ZohoObjectBase:
         self._data = None
         self._nextpage = None
         if id or {k:v for k,v in searchParams.items() if isinstance(v, str)}:
-            self._load(id=id, **searchParams)
+            try:
+                self._load(id=id, **searchParams)
+            except ZohoNotFound as e:
+                pass    # not found, but no need to raise this error.
         elif searchParams:
             self._data = DottedList()   # we aren't a list yet, but will be
 

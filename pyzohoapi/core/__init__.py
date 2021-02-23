@@ -91,8 +91,19 @@ class ZohoAPIBase:
                 else:
                     raise ZohoAPIThrottled()
             elif not rsp.ok:
+                err_params = {
+                    'code': rsp.status_code,
+                    'url': url,
+                    'msg': f"Encountered #{rsp.status_code} error calling Zoho API",
+                }
+                raise {
+                    '400': ZohoBadRequest,
+                    '401': ZohoUnauthorized,
+                    '404': ZohoNotFound,
+                    '405': ZohoMethodNotAllowed,
+                }.get(str(rsp.status_code), ZohoException)(**err_params)
                 # TODO: raise more specific exceptions here
-                raise ZohoException(f"Encountered #{rsp.status_code} error calling Zoho API")
+                raise ZohoException()
             else:
                 if rsp.headers['content-type'].startswith("application/json"):
                     d = rsp.json()

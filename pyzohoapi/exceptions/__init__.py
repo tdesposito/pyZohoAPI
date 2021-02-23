@@ -2,7 +2,7 @@
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
 class ZohoException(Exception):
-    def __init__(self, msg="Unspecified Error"):
+    def __init__(self, msg="Unspecified Error", **kwargs):
         super().__init__(msg)
 
 #---------------------------------------------------------------------------
@@ -34,6 +34,27 @@ class ZohoAPICallsExceeded(ZohoException):
 class ZohoAPIThrottled(ZohoException):
     def __init__(self):
         super().__init__("API Throttled")
+
+
+
+class ZohoBadRequest(ZohoException):
+    def __init__(self, url, **kwargs):
+        super().__init__(f"Bad Request on '{url}' (HTTP-400)")
+
+
+class ZohoUnauthorized(ZohoException):
+    def __init__(self, **kwargs):
+        super().__init__(f"Unauthorized - Invalid Access Token (HTTP=401)")
+
+
+class ZohoNotFound(ZohoException):
+    def __init__(self, url, **kwargs):
+        super().__init__(f"Not Found: '{url}' (HTTP-404)")
+
+
+class ZohoMethodNotAllowed(ZohoException):
+    def __init__(self, url, **kwargs):
+        super().__init__(f"Method not allowed on '{url}' (HTTP-405)")
 
 
 class ZohoInvalidOpError(ZohoException):

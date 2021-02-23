@@ -315,7 +315,7 @@ class ZohoObjectBase:
     def GetRelated(self, targetType, key):
         if self._id and self._data:
             if isinstance(self._data.get(key), str):
-                return targetType(self._api, self._data[key])
+                return targetType(self._data[key])
         raise ZohoInvalidOpError("GetRelated", self)
 
     def Iter(self, filterFunc=None, *, raw=False, **filter):

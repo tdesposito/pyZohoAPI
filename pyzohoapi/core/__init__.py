@@ -96,6 +96,9 @@ class ZohoAPIBase:
                     'url': url,
                     'msg': f"Encountered #{rsp.status_code} error calling Zoho API",
                 }
+                if rsp.headers.get('content-type',"").startswith("application/json"):
+                    d = rsp.json()
+                    err_params.update({'zoho_code': d.get('code'), 'zoho_msg': d.get('message',"")})
                 raise {
                     '400': ZohoBadRequest,
                     '401': ZohoUnauthorized,
@@ -287,7 +290,6 @@ class ZohoObjectBase:
                 self._reload(newData)
             return self
         raise ZohoInvalidOpError("Create", self)
-
 
     def Delete(self):
         """ Delete this object from Zoho

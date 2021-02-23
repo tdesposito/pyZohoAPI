@@ -38,8 +38,8 @@ class ZohoAPIThrottled(ZohoException):
 
 
 class ZohoBadRequest(ZohoException):
-    def __init__(self, url, **kwargs):
-        super().__init__(f"Bad Request on '{url}' (HTTP-400)")
+    def __init__(self, url, zoho_code="-no code-", zoho_msg="-no message-", **kwargs):
+        super().__init__(f"Bad Request (HTTP-400)\n{zoho_msg} (Zoho-{zoho_code})")
 
 
 class ZohoUnauthorized(ZohoException):

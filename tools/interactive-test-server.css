@@ -7,6 +7,10 @@ i {
   vertical-align: text-top;
 }
 
+pre {
+  overflow-x: scroll;
+}
+
 .hidden {
   display: none;
 }

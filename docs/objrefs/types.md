@@ -25,8 +25,8 @@ Inventory
 ```{admonition} Additional methods
 :class: tip
 
-* Activate
-* Deactivate
+* [Activate()](methods.md#activate)
+* [Deactivate()](methods.md#deactivate)
 ```
 
 ### Contact
@@ -36,10 +36,10 @@ Inventory
 ```{admonition} Additional methods
 :class: tip
 
-* Activate
-* Deactivate
-* UpdateBilling
-* UpdateShipping
+* [Activate()](methods.md#activate)
+* [Deactivate()](methods.md#deactivate)
+* [UpdateBilling()](methods.md#updatebilling)
+* [UpdateShipping()](methods.md#updateshipping)
 ```
 
 ### CustomerPayment
@@ -73,10 +73,10 @@ Books, Inventory
 ```{admonition} Additional methods
 :class: tip
 
-* Activate
-* AddImage
-* Deactivate
-* DeleteImage
+* [Activate()](methods.md#activate)
+* [AddImage()](methods.md#addimage)
+* [Deactivate()](methods.md#deactivate)
+* [DeleteImage()](methods.md#deleteimage)
 ```
 
 ### ItemGroup
@@ -86,8 +86,8 @@ Inventory
 ```{admonition} Additional methods
 :class: tip
 
-* Activate
-* Deactivate
+* [Activate()](methods.md#activate)
+* [Deactivate()](methods.md#deactivate)
 ```
 
 ### Organization
@@ -109,6 +109,12 @@ Books, Inventory
 ```{admonition} Sales Orders
 Books, Inventory
 ```
+```{admonition} Additional methods
+:class: tip
+
+* [Confirm()](methods.md#confirm)
+* [Void()](methods.md#void)
+```
 
 ### ShipmentOrder
 ```{admonition} Shipment Orders
@@ -122,8 +128,8 @@ Books, Inventory
 ```{admonition} Additional methods
 :class: tip
 
-* Activate
-* Deactivate
+* [Activate()](methods.md#activate)
+* [Deactivate()](methods.md#deactivate)
 ```
 
 ## By Product

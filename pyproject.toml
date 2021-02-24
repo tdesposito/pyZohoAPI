@@ -3,9 +3,28 @@ name = "pyZohoAPI"
 version = "0.1.0"
 description = "Pythonic access to Zoho APIs in the Finance Plus suite."
 authors = ["Todd Esposito <todd@toddesposito.com>"]
+license = "MIT"
+readme = "README.md"
+include = ["LICENSE"]
+homepage = "https://github.com/tdesposito/pyZohoAPI"
+repository = "https://github.com/tdesposito/pyZohoAPI"
+documentation = "https://pyzohoapi.readthedocs.io/en/latest/"
+keywords = [
+  "api",
+  "zoho api",
+  "zoho books",
+  "zoho inventory",
+  "zoho",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 requests = "^2.25.1"
 dotted = "^0.1.8"
 

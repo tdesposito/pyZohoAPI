@@ -28,10 +28,20 @@ def test_search_user():
     c = z.User(email=testdata['inventory']['user']['email'])
     assert c.IsLoaded
     assert c.IsList
-    assert repr(c) == "List of User entries"
+    assert repr(c) == "List of User objects"
     one = c.First()
     assert one.IsLoaded
     assert one.ID == testdata['inventory']['user']['id']
+
+
+def test_search_notfound():
+    c = z.User(email=testdata['inventory']['user']['invalid-email'])
+    assert c.IsLoaded
+    assert c.IsList
+    assert repr(c) == "List of User objects"
+    assert len(c._data.to_python()) == 0
+    one = c.First()
+    assert repr(one) == "New User"
 
 
 def test_list_raw_user():

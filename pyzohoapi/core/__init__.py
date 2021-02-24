@@ -202,8 +202,6 @@ class ZohoObjectBase:
                 self._load(id=id, **searchParams)
             except ZohoNotFound as e:
                 pass    # not found, but no need to raise this error.
-        elif searchParams:
-            self._data = DottedList()   # we aren't a list yet, but will be
 
     def __iter__(self):
         return self.Iter()
@@ -310,14 +308,12 @@ class ZohoObjectBase:
     def First(self):
         """ Get the first ZohoObject from the list.
         """
-        if self._id:
-            return self
-        if not self._data:
+        if self._data == None:
+            # We were a "new" object, but need to become a list-of
             self._load()
-        if self._data:
+        if isinstance(self._data, DottedList) and len(self._data):
             return self.__class__(self._api, self._data[0][self._id_field])
-        self._data = None
-        return self
+        return self.__class__(self._api)
 
     def GetCustomField(self, key, *, listKey="custom_fields", default=None):
         if self._id:

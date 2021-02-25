@@ -1,11 +1,13 @@
 ## pyZohoAPI (v0.1.1)
  **pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
- * Books
- * Checkout
- * Expense
- * Inventory
- * Invoice
- * Subscriptions
+ * **Books**
+ * *Checkout*<sup>*</sup>
+ * *Expense*<sup>*</sup>
+ * **Inventory**
+ * *Invoice*<sup>*</sup>
+ * *Subscriptions*<sup>*</sup>
+
+<sup>*</sup> Support is planned, but not yet available.
 
 ![GitHub](https://img.shields.io/github/license/tdesposito/pyZohoAPI)
 [![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)

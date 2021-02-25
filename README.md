@@ -9,9 +9,9 @@
 
 <sup>*</sup> Support is planned, but not yet available.
 
-![PyPI](https://img.shields.io/pypi/v/pyzohoapi)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyzohoapi)
-![GitHub](https://img.shields.io/github/license/tdesposito/pyZohoAPI)
+[![PyPI](https://img.shields.io/pypi/v/pyzohoapi)](https://pypi.org/project/pyzohoapi/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyzohoapi)](https://pypi.org/project/pyzohoapi/)
+![License](https://img.shields.io/github/license/tdesposito/pyZohoAPI)
 [![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)
 
 ### Installing pyZohoAPI

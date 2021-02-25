@@ -15,9 +15,18 @@
 
 You'll need at least **Python 3.6** to install pyZohoAPI.
 
-Via PyPI:
+#### Via PyPI:
 ```console
 $ python -m pip install pyzohoapi
+```
+
+#### From Source
+We use [Poetry](https://python-poetry.org/) for virtual environment and
+dependency management.
+```console
+$ git clone https://github.com/tdesposito/pyZohoAPI.git
+$ cd pyZohoAPI
+$ poetry install
 ```
 <!-- end installation -->
 

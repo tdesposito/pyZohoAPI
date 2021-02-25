@@ -192,7 +192,7 @@ class ZohoObjectBase:
     IsLoaded = property(lambda self: self._data is not None)
     Number = property(lambda self: self._data[self._number_field] if self._id and self._data else None)
 
-    def __init__(self, api, /, id=None, **searchParams):
+    def __init__(self, api, id=None, **searchParams):
         self._id = id
         self._api = api
         self._data = None
@@ -226,7 +226,7 @@ class ZohoObjectBase:
                 self._data = DottedDict()
             self._data[key] = value
 
-    def _load(self, *, page=None, **searchParams):
+    def _load(self, page=None, **searchParams):
         data = self._api.get(self._url_fragment(), self._query_string(**searchParams))
         if data is None:
             self._data = None
@@ -315,7 +315,7 @@ class ZohoObjectBase:
             return self.__class__(self._api, self._data[0][self._id_field])
         return self.__class__(self._api)
 
-    def GetCustomField(self, key, *, listKey="custom_fields", default=None):
+    def GetCustomField(self, key, listKey="custom_fields", default=None):
         if self._id:
             if self._data:
                 for cf in self._data.get(listKey, []):
@@ -330,7 +330,7 @@ class ZohoObjectBase:
                 return targetType(self._data[key])
         raise ZohoInvalidOpError("GetRelated", self)
 
-    def Iter(self, filterFunc=None, *, raw=False, **filter):
+    def Iter(self, filterFunc=None, raw=False, **filter):
         """ Iterate over the list of ZohoObjects
 
         If called on a non-connected ("new") object, we get the list of ALL objects

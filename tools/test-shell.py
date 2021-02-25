@@ -12,9 +12,6 @@ if sys.flags.interactive:
     import private
     td = private.testdata
 
-    def r():
-        return pyzohoapi.inventory.ZohoInventory(private.t['orgid'], private.t['region'], **private.t['api'])
-
     def dump(o, key=None):
         if key:
             pprint(o._data.to_python().get(key), indent=2)
@@ -27,6 +24,9 @@ if sys.flags.interactive:
                 else:
                     print(f"{k}: {v}")
 
+    books = pyzohoapi.inventory.ZohoBooks(private.t['orgid'], private.t['region'], **private.t['api'])
+    inv = pyzohoapi.inventory.ZohoInventory(private.t['orgid'], private.t['region'], **private.t['api'])
+
     print("\nTest shell loaded. Here's what you have:")
     print("\nModules: json;")
     print("\nFunctions:")
@@ -34,9 +34,10 @@ if sys.flags.interactive:
     print("\tdump(object, key=None) -> dumps a Zoho Object (or optional attribute);")
     print("\nObjects:")
     print("\tprivate.testdata -> dict, aliased to td;")
-    print("\tz -> ZohoInventory object : configured via testdata;")
+    print("\tbooks -> ZohoBooks object : configured via testdata;")
+    print("\tinv -> ZohoInventory object : configured via testdata;")
     print("Enjoy your testing!\n")
-    z = r()
+
 else:
     print("\nThis script bootstraps an interactive test enviroment, but only this way:")
     print(f"\t> python -i {__file__}")

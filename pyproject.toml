@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyZohoAPI"
-version = "0.1.0"
+version = "0.2.0"
 description = "Pythonic access to Zoho APIs in the Finance Plus suite."
 authors = ["Todd Esposito <todd@toddesposito.com>"]
 license = "MIT"
@@ -40,9 +40,9 @@ current_version = "0.2.0"
 git_commit = true
 git_tag = true
 
-# [[tool.bumpytrack.file_replaces]]
-# path = "setup.py"
-# search_template = "version=\"{version}\""
+[[tool.bumpytrack.file_replaces]]
+path = "pyproject.toml"
+search_template = "version = \"{version}\""
 
 [[tool.bumpytrack.file_replaces]]
 path = "docs/conf.py"

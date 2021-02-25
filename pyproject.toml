@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyZohoAPI"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pythonic access to Zoho APIs in the Finance Plus suite."
 authors = ["Todd Esposito <todd@toddesposito.com>"]
 license = "MIT"
@@ -36,13 +36,13 @@ sphinx-autobuild = "^2020.9.1"
 sphinx-copybutton = "^0.3.1"
 
 [tool.bumpytrack]
-current_version = "0.2.0"
+current_version = "0.2.1"
 git_commit = true
 git_tag = true
 
-[[tool.bumpytrack.file_replaces]]
-path = "pyproject.toml"
-search_template = "version = \"{version}\""
+# [[tool.bumpytrack.file_replaces]]
+# path = "pyproject.toml"
+# search_template = "version = \"{version}\""
 
 [[tool.bumpytrack.file_replaces]]
 path = "docs/conf.py"

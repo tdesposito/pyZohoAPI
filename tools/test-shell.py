@@ -5,8 +5,6 @@ import json
 from pprint import pprint
 import sys
 
-sys.path.insert(0, "..")
-
 if sys.flags.interactive:
     import pyzohoapi
     import private
@@ -24,11 +22,11 @@ if sys.flags.interactive:
                 else:
                     print(f"{k}: {v}")
 
-    books = pyzohoapi.inventory.ZohoBooks(private.t['orgid'], private.t['region'], **private.t['api'])
+    books = pyzohoapi.books.ZohoBooks(private.t['orgid'], private.t['region'], **private.t['api'])
     inv = pyzohoapi.inventory.ZohoInventory(private.t['orgid'], private.t['region'], **private.t['api'])
 
     print("\nTest shell loaded. Here's what you have:")
-    print("\nModules: json;")
+    print("\nModules:\n\tjson;")
     print("\nFunctions:")
     print("\tpprint();")
     print("\tdump(object, key=None) -> dumps a Zoho Object (or optional attribute);")

@@ -83,7 +83,7 @@ def test_filter_list_user():
 def test_so_get_related():
     so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
     assert so.IsLoaded
-    cust = so.GetRelated(ZohoInventory.Contact, "customer_id")
+    cust = so.GetRelated(z.Contact, "customer_id")
     assert cust.IsLoaded
     assert cust.contact_name == testdata['inventory']['salesorder']['contact_name']
 
@@ -91,7 +91,7 @@ def test_so_get_related():
 def test_so_iter_related():
     so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
     assert so.IsLoaded
-    for item in so.IterRelatedList(ZohoInventory.Item, "line_items", "item_id"):
+    for item in so.IterRelatedList(z.Item, "line_items", "item_id"):
         assert item.IsLoaded
         assert item.sku == testdata['inventory']['salesorder']['line_item_sku']
         break

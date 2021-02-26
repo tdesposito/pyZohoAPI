@@ -97,6 +97,15 @@ def test_so_iter_related():
         break
 
 
+def test_so_map_related():
+    so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
+    assert so.IsLoaded
+    for item in so.MapRelatedList(z.Item, "line_items", "item_id"):
+        assert item.object.IsLoaded
+        assert item.meta.sku == testdata['inventory']['salesorder']['line_item_sku']
+        assert item.meta.sku == item.object.sku
+        break
+
 def test_create_customer():
     c = z.Contact()
     c.contact_name = "00 TEST CONTACT - DO NOT USE"

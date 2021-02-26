@@ -149,3 +149,24 @@ def test_delete_customer():
     assert c.IsLoaded
     c.Delete()
     assert c.IsDeleted
+
+
+def test_confirm():
+    so = z.SalesOrder()
+    so.salesorder_number = "TEST-SO-DO-NOT-USE"
+    so.customer_id = testdata['inventory']['customer']['id']
+    so.tax_id = testdata['inventory']['customer']['tax_id']
+    so.salesperson_id = testdata['inventory']['customer']['salesperson_id']
+    so.line_items = []
+    so.line_items.append(testdata['inventory']['item'])
+    so.Create(ignore_auto_number_generation="true")
+    assert so.ID is not None
+    assert so.status == "draft"
+
+    assert so.Confirm()
+
+    soAfter = z.SalesOrder(so.ID)
+    assert soAfter.IsLoaded
+    assert soAfter.status == "confirmed"
+
+    so.Delete()

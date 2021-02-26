@@ -190,7 +190,7 @@ class ZohoObjectBase:
     IsDeleted = property(lambda self: self._id is False)
     IsList = property(lambda self: isinstance(self._data, DottedList))
     IsLoaded = property(lambda self: self._data is not None)
-    Number = property(lambda self: self._data[self._number_field] if isinsttance(self._data, DottedDict) else None)
+    Number = property(lambda self: self._data[self._number_field] if isinstance(self._data, DottedDict) else None)
 
     def __init__(self, api, id=None, **searchParams):
         self._id = id

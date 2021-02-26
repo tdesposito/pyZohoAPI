@@ -83,6 +83,7 @@ def test_filter_list_user():
 def test_so_get_related():
     so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
     assert so.IsLoaded
+    assert so.Number == testdata['inventory']['salesorder']['number']
     cust = so.GetRelated(z.Contact, "customer_id")
     assert cust.IsLoaded
     assert cust.contact_name == testdata['inventory']['salesorder']['contact_name']

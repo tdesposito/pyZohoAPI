@@ -13,7 +13,8 @@ typical `AttributeError`. Please code appropriately.
 
 ## Alphabetically
 ### `Activate()`
-Makes the object "Active".
+Makes the object "Active". True on success. Raises `ZohoInvalidOpError` if
+called on a New or List-of object.
 
 ### `AddImage()`
 Add an image to an object.
@@ -25,16 +26,19 @@ Add an image to an object.
 ```
 
 ### `Confirm()`
-Marks an object as "Confirmed".
+Marks an object as "Confirmed". Returns True on success. Raises
+`ZohoInvalidOpError` if called on a New or List-of object.
 
 ### `Deactivate()`
-Makes the object "Inactive".
+Makes the object "Inactive". True on success. Raises `ZohoInvalidOpError` if
+called on a New or List-of object.
 
 ### `DeleteImage()`
 Deletes the image associated with an object.
 
 ### `Draft()`
-Marks an object as "Draft".
+Marks an object as "Draft". Returns True on success. Raises `ZohoInvalidOpError`
+if called on a New or List-of object.
 
 ### `UpdateBilling()`
 Updates the related Billing Address of the object.
@@ -53,4 +57,5 @@ Contact #9876543210987654321
 ```
 
 ### `Void()`
-Marks an object as "Void".
+Marks an object as "Void". Returns True on success. Raises `ZohoInvalidOpError`
+if called on a New or List-of object.

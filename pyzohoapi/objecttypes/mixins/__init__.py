@@ -6,18 +6,22 @@ from ...exceptions import *
 class WithActivate:
     def Activate(self):
         if self._id:
-            data = self._api.post(self._url_fragment(extraPath=['active']))
-            if data['code'] == 0:
+            try:
+                self._api.post(self._url_fragment(extraPath=['active']))
                 self.status = "active"
-            return self
+                return True
+            except ZohoException as e:
+                return False
         raise ZohoInvalidOpError("Activate", self)
 
     def Deactivate(self):
         if self._id:
-            data = self._api.post(self._url_fragment(extraPath=['inactive']))
-            if data['code'] == 0:
+            try:
+                self._api.post(self._url_fragment(extraPath=['inactive']))
                 self.status = "inactive"
-            return self
+                return True
+            except ZohoException as e:
+                return False
         raise ZohoInvalidOpError("Deactivate", self)
 
 
@@ -36,7 +40,11 @@ class WithImage:
 class _WithStatus:
     def _mark(self, status):
         if self._id:
-            return self._api.post(self._url_fragment(extraPath=['status', status]))
+            try:
+                self._api.post(self._url_fragment(extraPath=['status', status]))
+                return True
+            except ZohoException as e:
+                return False
         return None
 
 
@@ -44,24 +52,21 @@ class WithConfirm(_WithStatus):
     def Confirm(self):
         if not self._id:
             raise ZohoInvalidOpError("Confirm", self)
-        self._mark('confirmed')
-        return self
+        return self._mark('confirmed')
 
 
 class WithDraft(_WithStatus):
     def Draft(self):
         if not self._id:
             raise ZohoInvalidOpError("Draft", self)
-        self._mark('draft')
-        return self
+        return self._mark('draft')
 
 
 class WithVoid(_WithStatus):
     def Void(self):
         if not self._id:
             raise ZohoInvalidOpError("Void", self)
-        self._mark('void')
-        return self
+        return self._mark('void')
 
 
 class _WithAspect:

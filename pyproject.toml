@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyZohoAPI"
-version = "0.2.3"
+version = "0.2.4"
 description = "Pythonic access to Zoho APIs in the Finance Plus suite."
 authors = ["Todd Esposito <todd@toddesposito.com>"]
 license = "MIT"
@@ -36,7 +36,7 @@ sphinx-autobuild = "^2020.9.1"
 sphinx-copybutton = "^0.3.1"
 
 [tool.bumpytrack]
-current_version = "0.2.3"
+current_version = "0.2.4"
 git_commit = true
 git_tag = true
 

@@ -31,6 +31,8 @@ dependency management.
 $ git clone https://github.com/tdesposito/pyZohoAPI.git
 $ cd pyZohoAPI
 $ poetry install
+$ poetry build
+$ pip install dist/*.whl
 ```
 <!-- end installation -->
 

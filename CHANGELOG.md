@@ -4,15 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.2.3](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.2.3) - 2021-02-26
+## [v0.2.6](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.2.6) - 2021-02-26
 
-<small>[Compare with v0.2.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.2.0...v0.2.3)</small>
+<small>[Compare with v0.2.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.2.0...v0.2.6)</small>
 
 ### Added
-- Add changelog ([5785569](https://github.com/tdesposito/pyZohoAPI/commit/57855691af312e2705d4b93b749b63b2225005c1) by Todd Esposito).
+- Add test for confirm() ([dab9453](https://github.com/tdesposito/pyZohoAPI/commit/dab9453eb26d336516119e7a46bf14d053abc428) by Todd Esposito).
+- Add test for number property ([5c6e670](https://github.com/tdesposito/pyZohoAPI/commit/5c6e670eb331501a4c9e832fd87fcb7c7e3d0997) by Todd Esposito).
+- Add test for maprelatedlist() ([7528621](https://github.com/tdesposito/pyZohoAPI/commit/752862120900c9a5ba095fd6ec405164a04d1085) by Todd Esposito).
+- Add changelog ([8d3e6da](https://github.com/tdesposito/pyZohoAPI/commit/8d3e6da2474fc5d780c482263c3cccaf88d3e2f0) by Todd Esposito).
 - Add pypi badges ([aa2d593](https://github.com/tdesposito/pyZohoAPI/commit/aa2d593c28c3d64a128eedebcf10f777714aef95) by Todd Esposito).
 
+### Changed
+- Changed confirm() (et al) to return true/false ([4173407](https://github.com/tdesposito/pyZohoAPI/commit/41734079837e9fa90abfddc32da490d06ae81ed3) by Todd Esposito).
+
 ### Fixed
+- Fix typo ([809c25c](https://github.com/tdesposito/pyZohoAPI/commit/809c25cb2635fe3d581e6c7c7cdcf9d4451a7d55) by Todd Esposito).
 - Fix number prop for after-delete() ([ddc5567](https://github.com/tdesposito/pyZohoAPI/commit/ddc5567982f07c235ebff3a253b04264bc4d96cd) by Todd Esposito).
 
 ### Removed
@@ -49,3 +56,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Remove dotted - obsolete ([bfa2d5b](https://github.com/tdesposito/pyZohoAPI/commit/bfa2d5b7ef89c7da48d1f453017e2ee6825fe544) by Todd Esposito).
+
+

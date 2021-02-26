@@ -375,7 +375,7 @@ class ZohoObjectBase:
     def MapRelatedList(self, targetType, listKey, idField):
         if self._id and self._data:
             for item in self._data.get(listKey, []):
-                yield DottedDect({'meta': item.to_python(), 'object': targetType(item.get(idField))})
+                yield DottedDict({'meta': item.to_python(), 'object': targetType(item.get(idField))})
         else:
             raise ZohoInvalidOpError("MapRelatedList", self)
 

@@ -22,7 +22,7 @@ copyright = '2021, Todd D. Esposito'
 author = 'Todd D. Esposito'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2.6'
+release = '0.3.0'
 
 
 # -- General configuration ---------------------------------------------------

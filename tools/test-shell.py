@@ -22,8 +22,8 @@ if sys.flags.interactive:
                 else:
                     print(f"{k}: {v}")
 
-    books = pyzohoapi.books.ZohoBooks(private.t['orgid'], private.t['region'], **private.t['api'])
-    inv = pyzohoapi.inventory.ZohoInventory(private.t['orgid'], private.t['region'], **private.t['api'])
+    books = pyzohoapi.books.ZohoBooks(td['orgid'], td['region'], **td['api'])
+    inv = pyzohoapi.inventory.ZohoInventory(td['orgid'], td['region'], **td['api'])
 
     print("\nTest shell loaded. Here's what you have:")
     print("\nModules:\n\tjson;")

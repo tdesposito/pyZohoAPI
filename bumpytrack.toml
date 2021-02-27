@@ -1,0 +1,20 @@
+[tool.bumpytrack]
+current_version = "0.2.6"
+git_commit = true
+git_tag = true
+
+[[tool.bumpytrack.file_replaces]]
+path = "pyproject.toml"
+search_template = "version = \"{version}\""
+
+[[tool.bumpytrack.file_replaces]]
+path = "docs/conf.py"
+search_template = "release = '{version}'"
+
+[[tool.bumpytrack.file_replaces]]
+path = "pyzohoapi/__init__.py"
+search_template = "__version__ = '{version}'"
+
+[[tool.bumpytrack.file_replaces]]
+path = "README.md"
+search_template = "## pyZohoAPI (v{version})"

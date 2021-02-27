@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.3.0) - 2021-02-27
+
+<small>[Compare with v0.2.6](https://github.com/tdesposito/pyZohoAPI/compare/v0.2.6...v0.3.0)</small>
+
+### Added
+- Add getimage() and deleteimage() ([62f0bbf](https://github.com/tdesposito/pyZohoAPI/commit/62f0bbf62e081b4b0e507d3676bb05e876bb2d4a) by Todd Esposito).
+
+### Fixed
+- Fix testdata references in test-shell ([cf9e851](https://github.com/tdesposito/pyZohoAPI/commit/cf9e851bfd6ab481f7f8f6c564f8abb2690aaf60) by Todd Esposito).
+
+
 ## [v0.2.6](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.2.6) - 2021-02-26
 
 <small>[Compare with v0.2.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.2.0...v0.2.6)</small>

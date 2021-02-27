@@ -136,10 +136,10 @@ class ZohoAPIBase:
             if data['code'] == 0:
                 return data
             raise ZohoException(f"zoho returned {data['code']}: {data['message']}")
-        return {
+        return DottedDict({
             'content': rsp.content,
             'content_type': rsp.headers['content-type'],
-        }
+        })
 
     def get_endpoint(self, region):
         # This MUST be overridden in subclasses for the APIs to work.

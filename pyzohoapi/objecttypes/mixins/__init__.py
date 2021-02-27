@@ -34,7 +34,13 @@ class WithImage:
 
     def DeleteImage(self):
         if self._id:
-            return self
+            return self._api.delete(self._url_fragment(extraPath=['image']))
+        raise ZohoInvalidOpError("AddImage", self)
+
+    def GetImage(self):
+        if self._id and self._data:
+            return self._api.get(self._url_fragment(extraPath=['image']), "")
+        raise ZohoInvalidOpError("GetImage", self)
 
 
 class _WithStatus:

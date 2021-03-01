@@ -1,7 +1,7 @@
 # This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 __all__ = [
     "ZohoBooks",
     "ZohoInventory",

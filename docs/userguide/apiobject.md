@@ -62,24 +62,37 @@ Client ID and Secrets are just that: SECRET. Please don't include them directly
 in any code you might share.
 ```
 
+### intercall_delay
+Determines the minimum amount of time, in seconds, between each API call.
+
+**Default: 0**
+
 ### max_retries
 Determines how many times, at most, we will retry a throttled call.
+
 **Default: 10**
 
 ### max_retry_after
 The longest time, in seconds, we are willing to wait to retry a throttled call.
 If Zoho sends a **Retry-After** header of more than this amount, we'll abort the
-call with an exception. **Default: 180**
+call with an exception.
+
+**Default: 180**
 
 ### min_calls_remaining
 For Orgs/APIs with a per-day call limit, this is the minimum number of calls
 that have to remain in our allotment for us to attempt a call. If there are
-fewer than this, we raise an exception. **Default: 1**
+fewer than this, we raise an exception.
+
+**Default: 1**
 ```{note}
 Since we have to make at least one call to be informed how many calls remain, we
 could, under certain circumstances, run you below this minimum, or even out of
 calls.
 ```
+
+### redirect_url
+One of the Redirect URLs registered with the Zoho OAuth Client.
 
 ### refresh_token
 One of your current, active Refresh Tokens, for use in creating Access Tokens.
@@ -92,12 +105,11 @@ Zoho uses OAuth procedures to provide you Access and Refresh Tokens. Please see
 details.
 ```
 
-### redirect_url
-One of the Redirect URLs registered with the Zoho OAuth Client.
-
 ### retry_backoff_seconds
 The amount of time, in seconds, to wait between throttled calls, if Zoho doesn't
-provide a **Retry-After** header. **Default: 0.5**
+provide a **Retry-After** header.
+
+**Default: 0.5**
 
 ```{todo}
 Add Self-Client and Non-Browser Client instructions.

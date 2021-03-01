@@ -2,6 +2,7 @@
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
 import datetime
+from time import sleep
 
 import requests
 
@@ -40,17 +41,23 @@ class ZohoAPIBase:
         self._org = organization_id
         self._endpoint = self.get_endpoint(region)
         self._oauth = f"https://accounts.zoho.{self._regionmap[region]}/oauth/v2"
-        self._ratelimit = { 'limit': None, 'reset': None, 'remaining': 99999999 }
+        self._ratelimit = {
+            'limit': None,
+            'NextCall': datetime.datetime.now().timestamp(),
+            'remaining': 99999999,
+            'reset': None,
+        }
         self._api_keys = {
             'access_token': None,
             'client_id': None,
             'client_secret': None,
-            'redirect_url': None,
-            'refresh_token': None,
+            'intercall_delay': 0,
             'max_retries': 10,
-            'retry_backoff_seconds': 0.5,
             'max_retry_after': 180,
             'min_calls_remaining': 1,
+            'redirect_url': None,
+            'refresh_token': None,
+            'retry_backoff_seconds': 0.5,
         }
         self.update_tokens(apiArgs)
 
@@ -75,6 +82,11 @@ class ZohoAPIBase:
         if self._api_keys['min_calls_remaining'] >= int(self._ratelimit['remaining']):
             if self._ratelimit['ResetAt'] > datetime.datetime.now():
                 raise ZohoAPICallsExceeded()
+
+        now = datetime.datetime.now().timestamp()
+        if now < self._ratelimit['NextCall']:
+            sleep(self._ratelimit['NextCall'] - now)
+
         retries = self._api_keys['max_retries']
         while True:
             reqparams = {
@@ -83,6 +95,7 @@ class ZohoAPIBase:
                 'json': body,
             }
             rsp = requestFunc(url, **reqparams)
+            self._ratelimit['NextCall'] = datetime.datetime.now().timestamp() + self._api_keys['intercall_delay']
             if rsp.status_code == 429 and retries:  # Too Many Requests
                 retries -= 1
                 sleeptime = int(rsp.headers.get('retry-after', self._api_keys['retry_backoff_seconds']))
@@ -176,9 +189,7 @@ class ZohoAPIBase:
         for key in ['limit', 'reset', 'remaining']:
             if headers.get(f'x-rate-limit-{key}'):
                 self._ratelimit[key] = headers[f'x-rate-limit-{key}']
-        self._ratelimit['ResetAt'] = datetime.datetime.now()
-        if self._ratelimit.get('reset'):
-            self._ratelimit['ResetAt'] += datetime.timedelta(seconds=int(self._ratelimit['reset']))
+        self._ratelimit['ResetAt'] = datetime.datetime.now() + datetime.timedelta(seconds=int(self._ratelimit.get('reset', 0)))
 
     def update_tokens(self, apiArgs):
         self._api_keys.update(apiArgs)

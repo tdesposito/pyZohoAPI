@@ -1,4 +1,4 @@
-## pyZohoAPI (v0.3.0)
+# pyZohoAPI (v0.3.0)
  **pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
  * **Books**
  * *Checkout*<sup>*</sup>
@@ -14,17 +14,17 @@
 ![License](https://img.shields.io/github/license/tdesposito/pyZohoAPI)
 [![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)
 
-### Installing pyZohoAPI
+## Installing pyZohoAPI
 <!-- start installation -->
 
 You'll need at least **Python 3.6** to install pyZohoAPI.
 
-#### Via PyPI:
+### Via PyPI
 ```console
 $ python -m pip install pyzohoapi
 ```
 
-#### From Source
+### From Source
 We use [Poetry](https://python-poetry.org/) for virtual environment and
 dependency management.
 ```console
@@ -36,7 +36,7 @@ $ pip install dist/*.whl
 ```
 <!-- end installation -->
 
-### Basic Usage
+## Basic Usage
 
 <!-- start basic-usage -->
 ```python
@@ -58,5 +58,5 @@ True
 
 See the [full documetation on ReadTheDocs](https://pyzohoapi.readthedocs.io/en/latest/)
 
-### Contributing
+## Contributing
 Pull Requests gladly considered!

@@ -17,4 +17,4 @@ search_template = "__version__ = '{version}'"
 
 [[tool.bumpytrack.file_replaces]]
 path = "README.md"
-search_template = "## pyZohoAPI (v{version})"
+search_template = "# pyZohoAPI (v{version})"

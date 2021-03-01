@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.4.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.4.0) - 2021-03-01
+
+<small>[Compare with v0.3.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.3.0...v0.4.0)</small>
+
+### Added
+- Add intercall_delay ([0e2a5fa](https://github.com/tdesposito/pyZohoAPI/commit/0e2a5fa6618531add2f53daacc454c7ccce2b690) by Todd D. Esposito).
+
+### Fixed
+- Fix possible access token expiry problem ([ba6db9e](https://github.com/tdesposito/pyZohoAPI/commit/ba6db9e33758a30295ec3fc54bf830f2f89a0dcf) by Todd Esposito).
+
+
 ## [v0.3.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.3.0) - 2021-02-27
 
 <small>[Compare with v0.2.6](https://github.com/tdesposito/pyZohoAPI/compare/v0.2.6...v0.3.0)</small>
@@ -12,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add getimage() and deleteimage() ([62f0bbf](https://github.com/tdesposito/pyZohoAPI/commit/62f0bbf62e081b4b0e507d3676bb05e876bb2d4a) by Todd Esposito).
 
 ### Fixed
+- Fix bumptrack config to include pyproject.toml ([610f6ec](https://github.com/tdesposito/pyZohoAPI/commit/610f6ece02b1b5ac283741eaad3b4af0f26e7d51) by Todd Esposito).
 - Fix testdata references in test-shell ([cf9e851](https://github.com/tdesposito/pyZohoAPI/commit/cf9e851bfd6ab481f7f8f6c564f8abb2690aaf60) by Todd Esposito).
 
 

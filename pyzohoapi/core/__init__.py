@@ -62,7 +62,7 @@ class ZohoAPIBase:
         self.update_tokens(apiArgs)
 
     def auth_header(self):
-        if self._api_keys.get('access_token') and self._api_keys['expires_at'] > datetime.datetime.now():
+        if self._api_keys.get('access_token') and self._api_keys['AccessExpiresAt'] > datetime.datetime.now().timestamp():
             return {'Authorization': f"Zoho-oauthtoken {self._api_keys['access_token']}"}
         if self._api_keys.get('refresh_token'):
             rsp = requests.post(f"{self._oauth}/token", params={
@@ -193,7 +193,7 @@ class ZohoAPIBase:
 
     def update_tokens(self, apiArgs):
         self._api_keys.update(apiArgs)
-        self._api_keys['expires_at'] = datetime.datetime.now() + datetime.timedelta(seconds=apiArgs.get('expires_in', 0) - 10)
+        self._api_keys['AccessExpiresAt'] = datetime.datetime.now().timestamp() + int(apiArgs.get('expires_in', 0)) - 10
 
 
 class ZohoObjectBase:

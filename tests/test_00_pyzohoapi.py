@@ -25,6 +25,16 @@ def test_api_expired_access_token():
     with pytest.raises(ZohoInsufficentAuthKeys):
         z.auth_header()
 
+def test_api_invalid_access_token():
+    z = ZohoInventory(testdata['orgid'], testdata['region'], **testdata['api'])
+    # Force a call so we get a valid access_token
+    u = z.User().First()
+    assert u.IsLoaded
+    token = z.auth_header()
+    z._api_keys['access_token'] = "1000.badtoken"   # but not expired
+    u = z.User().First()
+    assert u.IsLoaded
+
 def test_api_refresh_access_token():
     z = ZohoAPIBase(testdata['orgid'], testdata['region'], **testdata['api'])
     new_token = z.auth_header()

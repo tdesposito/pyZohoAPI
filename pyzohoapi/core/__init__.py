@@ -112,6 +112,11 @@ class ZohoAPIBase:
                 if rsp.headers.get('content-type',"").startswith("application/json"):
                     d = rsp.json()
                     err_params.update({'zoho_code': d.get('code'), 'zoho_msg': d.get('message',"")})
+                if rsp.status_code == 401:
+                    self._api_keys['access_token'] = None
+                    retries -= 1
+                    if retries:
+                        continue
                 raise {
                     '400': ZohoBadRequest,
                     '401': ZohoUnauthorized,

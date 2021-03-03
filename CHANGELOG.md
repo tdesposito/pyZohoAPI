@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.4.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.4.1) - 2021-03-02
+
+<small>[Compare with v0.4.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.4.0...v0.4.1)</small>
+
+### Fixed
+- Fix retry around an unexpectedly invalid access_token ([c70df33](https://github.com/tdesposito/pyZohoAPI/commit/c70df33607a1c491f456d0c9508a600e8a4bfc1d) by Todd Esposito).
+
+
 ## [v0.4.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.4.0) - 2021-03-01
 
 <small>[Compare with v0.3.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.3.0...v0.4.0)</small>

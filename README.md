@@ -1,13 +1,15 @@
 # pyZohoAPI (v0.4.1)
- **pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
- * **Books**
- * *Checkout*<sup>*</sup>
- * *Expense*<sup>*</sup>
- * **Inventory**
- * *Invoice*<sup>*</sup>
- * *Subscriptions*<sup>*</sup>
 
-<sup>*</sup> Support is planned, but not yet available.
+**pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
+
+- **Books**
+- Checkout<sup>\*</sup>
+- Expense<sup>\*</sup>
+- **Inventory**
+- Invoice<sup>\*</sup>
+- **Subscriptions**
+
+<sup>\*</sup> Support is planned, but not yet available.
 
 [![PyPI](https://img.shields.io/pypi/v/pyzohoapi)](https://pypi.org/project/pyzohoapi/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyzohoapi)](https://pypi.org/project/pyzohoapi/)
@@ -15,18 +17,22 @@
 [![Documentation Status](https://readthedocs.org/projects/pyzohoapi/badge/?version=latest)](https://pyzohoapi.readthedocs.io/en/latest/?badge=latest)
 
 ## Installing pyZohoAPI
+
 <!-- start installation -->
 
 You'll need at least **Python 3.6** to install pyZohoAPI.
 
 ### Via PyPI
+
 ```console
 $ python -m pip install pyzohoapi
 ```
 
 ### From Source
+
 We use [Poetry](https://python-poetry.org/) for virtual environment and
 dependency management.
+
 ```console
 $ git clone https://github.com/tdesposito/pyZohoAPI.git
 $ cd pyZohoAPI
@@ -34,11 +40,13 @@ $ poetry install
 $ poetry build
 $ pip install dist/*.whl
 ```
+
 <!-- end installation -->
 
-## Basic Usage
+## Basic Usage Example
 
 <!-- start basic-usage -->
+
 ```python
 >>> from pyzohoapi import ZohoInventory
 >>> api = ZohoInventory("{your-orginization-id}", "{your-region}",
@@ -54,9 +62,13 @@ True
 >>> contact.first_name = "Changed"
 >>> contact.Update()
 ```
+
 <!-- end basic-usage -->
+
+## Documentation
 
 See the [full documetation on ReadTheDocs](https://pyzohoapi.readthedocs.io/en/latest/)
 
 ## Contributing
+
 Pull Requests gladly considered!

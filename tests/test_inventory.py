@@ -150,8 +150,7 @@ def test_delete_customer():
     c.Delete()
     assert c.IsDeleted
 
-
-def test_confirm():
+def util_createso():
     so = z.SalesOrder()
     so.salesorder_number = "TEST-SO-DO-NOT-USE"
     so.customer_id = testdata['inventory']['customer']['id']
@@ -160,6 +159,10 @@ def test_confirm():
     so.line_items = []
     so.line_items.append(testdata['inventory']['item'])
     so.Create(ignore_auto_number_generation="true")
+    return so
+
+def test_confirm():
+    so = util_createso()
     assert so.ID is not None
     assert so.status == "draft"
 
@@ -168,5 +171,18 @@ def test_confirm():
     soAfter = z.SalesOrder(so.ID)
     assert soAfter.IsLoaded
     assert soAfter.status == "confirmed"
+
+    so.Delete()
+
+def test_set_customfield():
+    so = util_createso()
+    assert so.ID is not None
+    assert so.GetCustomField('cf_system_was_printed') is False
+
+    so.SetCustomField('cf_system_was_printed', True)
+    assert so.GetCustomField('cf_system_was_printed') is True
+
+    soAfter = z.SalesOrder(so.ID)
+    assert soAfter.GetCustomField('cf_system_was_printed') is True
 
     so.Delete()

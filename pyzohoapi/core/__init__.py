@@ -123,8 +123,6 @@ class ZohoAPIBase:
                     '404': ZohoNotFound,
                     '405': ZohoMethodNotAllowed,
                 }.get(str(rsp.status_code), ZohoException)(**err_params)
-                # TODO: raise more specific exceptions here
-                raise ZohoException()
             else:
                 if rsp.headers['content-type'].startswith("application/json"):
                     d = rsp.json()
@@ -394,6 +392,16 @@ class ZohoObjectBase:
                 yield DottedDict({'meta': item.to_python(), 'object': targetType(item.get(idField))})
         else:
             raise ZohoInvalidOpError("MapRelatedList", self)
+
+    def SetCustomField(self, key, value, listKey="custom_fields"):
+        if self._id:
+            if self._data:
+                for cf in self._data.get(listKey, []):
+                    if key in [cf['label'], cf['placeholder']]:
+                        cf['value'] = value
+                        return self
+            return self
+        raise ZohoInvalidOpError("SetCustomField", self)
 
     def Update(self):
         if self._id and self._data:

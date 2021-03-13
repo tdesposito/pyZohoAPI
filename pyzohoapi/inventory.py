@@ -2,7 +2,6 @@
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
 from .core import ZohoAPIBase
-from .exceptions import ZohoException
 from . import objecttypes
 
 class ZohoInventory(ZohoAPIBase):

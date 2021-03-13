@@ -4,28 +4,26 @@
 from ...exceptions import *
 
 class WithActivate:
-    def Activate(self):
-        if self._id:
+    """Adds `Activate()` and `Deactivate()`"""
+    def _do_operation(self, status, funcname):
+        if self._id and self._data:
             try:
-                self._api.post(self._url_fragment(extraPath=['active']))
-                self.status = "active"
+                self._api.post(self._url_fragment(extraPath=[status]))
+                self.status = status
                 return True
             except ZohoException as e:
                 return False
-        raise ZohoInvalidOpError("Activate", self)
+        raise ZohoInvalidOpError(funcname, self)
+
+    def Activate(self):
+        return self._do_operation('active', "Activate")
 
     def Deactivate(self):
-        if self._id:
-            try:
-                self._api.post(self._url_fragment(extraPath=['inactive']))
-                self.status = "inactive"
-                return True
-            except ZohoException as e:
-                return False
-        raise ZohoInvalidOpError("Deactivate", self)
+        return self._do_operation('inactive', "Deactivate")
 
 
 class WithImage:
+    """Adds `AddImage()`, `DeleteImage()` and `GetImage()`"""
     def AddImage(self, name, image, type="image/jpeg"):
         if self._id:
             file = {'image': (name, image, type)}
@@ -55,6 +53,7 @@ class _WithStatus:
 
 
 class WithConfirm(_WithStatus):
+    """Adds `Confirm()`"""
     def Confirm(self):
         if not self._id:
             raise ZohoInvalidOpError("Confirm", self)
@@ -62,6 +61,7 @@ class WithConfirm(_WithStatus):
 
 
 class WithDraft(_WithStatus):
+    """Adds `Draft()`"""
     def Draft(self):
         if not self._id:
             raise ZohoInvalidOpError("Draft", self)
@@ -69,6 +69,7 @@ class WithDraft(_WithStatus):
 
 
 class WithVoid(_WithStatus):
+    """Adds `Void()`"""
     def Void(self):
         if not self._id:
             raise ZohoInvalidOpError("Void", self)
@@ -85,6 +86,7 @@ class _WithAspect:
 
 
 class WithAddresses(_WithAspect):
+    """Adds `UpdateBilling()` and `UpdateShipping()`"""
     def UpdateBilling(self):
         if self._id and self._data:
             self._updateAspect('address', self.billing_address.address_id, self.billing_address.to_python())

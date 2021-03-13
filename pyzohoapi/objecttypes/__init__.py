@@ -5,22 +5,15 @@ from ..core import ZohoObjectBase
 from .mixins import *
 
 def ZohoObjectFactory(name, nameform=None, idform=None, raw=False, required=[], mixins=[]):
-    """ Factor function to create a Zoho Object type
+    """ Factory function to create a Zoho Object type
 
     :param name: object-class name, the basis of the API url
-    :type name: str
     :param nameform: override how the singular/plural entry keys are formed.
-    :type nameform: str
     :param idform: override how the id and number fields are formed.
-    :type idform: str
     :param raw: handle the response body as raw data rather than json for non-list responses
-    :type raw: bool
     :param required: list of required-to-update fields. Defaults to [].
-    :type required: list
     :param mixins: list of object-type mixins. Defaults to [].
-    :type mixins: list
     :return: ZohoObject sub-class
-    :rtype: type
     """
     return type(name, tuple([ZohoObjectBase] + mixins), {
         '__name__': name,

@@ -238,6 +238,7 @@ to the object's `.custom_fields` list with something like:
 ...   sales_order.custom_fields.append({'placeholder': 'cf_my_field', 'value': 'my-value'})
 ... else:
 ...   sales_order.SetCustomField('cf_my_field', 'my-value')
+>>> sales_order.Update()
 ```
 This is because of ambiguity in the Zoho API; sometimes to add a custom field it
 wants `placeholder` and sometimes it wants `label` so you have to do this

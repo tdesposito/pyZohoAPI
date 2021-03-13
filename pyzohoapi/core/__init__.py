@@ -22,17 +22,14 @@ class ZohoAPIBase:
         'us': "com",
     }
     def __init__(self, organization_id, region="us", **apiArgs):
-        """Short summary.
+        """ Constructor
 
-        :param organization_id: Description of parameter `organization_id`.
-        :type organization_id: type
-        :param region: Description of parameter `region`. Defaults to "us".
-        :type region: type
-        :param **apiArgs: Description of parameter `**apiArgs`.
-        :type **apiArgs: type
-        :return: Description of returned object.
-        :rtype: type
-        :raises ExceptionName: Why the exception is raised.
+        :param organization_id: Zoho Organization ID to which to connect
+        :type organization_id: str
+        :param region: Zoho Data Center Region. Defaults to "us".
+        :type region: str
+        :param **apiArgs: additional parameters for API operation.
+        :raises ZohoUnknownRegionException: if the region is unknown or invalid.
 
         """
         region = region.lower()
@@ -62,6 +59,12 @@ class ZohoAPIBase:
         self.update_tokens(apiArgs)
 
     def auth_header(self):
+        """ Returns the authorization header, refreshing the access_token as needed.
+
+        :return: {'Authorization': '... access token ...'}
+        :raises ZohoAuthRefreshFailure: if a refresh attemp fails.
+        :raises ZohoInsufficentAuthKeys: if we don't have enough info to refresh.
+        """
         if self._api_keys.get('access_token') and self._api_keys['AccessExpiresAt'] > datetime.datetime.now().timestamp():
             return {'Authorization': f"Zoho-oauthtoken {self._api_keys['access_token']}"}
         if self._api_keys.get('refresh_token'):
@@ -296,8 +299,8 @@ class ZohoObjectBase:
     def Create(self, **qParams):
         """ Create this object in Zoho
 
-        :return: self (so you can chain) as updated by Zoho
-        :rtype: ZohoObject
+        :return: `self` as created by Zoho
+        :raises ZohoInvalidOpError: if `self` isn't "new"
         """
         if not self._id:
             newData = self._api.post(self._url_fragment(), self._data.to_python(), self._query_string(**qParams))
@@ -309,8 +312,8 @@ class ZohoObjectBase:
     def Delete(self):
         """ Delete this object from Zoho
 
-        :return: self, but marked as deleted
-        :rtype: ZohoObject
+        :return: `self`
+        :raises ZohoInvalidOpError: if `self` isn't "single-object"
         """
         if self._id:
             if self._api.delete(self._url_fragment()):
@@ -321,6 +324,8 @@ class ZohoObjectBase:
 
     def First(self):
         """ Get the first ZohoObject from the list.
+
+        :return: a ZohoObject
         """
         if self._data == None:
             # We were a "new" object, but need to become a list-of
@@ -350,13 +355,9 @@ class ZohoObjectBase:
         If called on a non-connected ("new") object, we get the list of ALL objects
 
         :param filterFunc: function which takes the item to test, returning True or False
-        :type filter: callable
         :param raw: return the raw list data?
-        :type raw: bool
         :param filter: fields/values to filter the list by
-        :type filter: dict
-        :return: iterable of ZohoObjects
-        :rtype: iterable
+        :return: iterable of ZohoObjects (technically, a generator)
         """
         if self._id:
             return [self]
@@ -394,6 +395,14 @@ class ZohoObjectBase:
             raise ZohoInvalidOpError("MapRelatedList", self)
 
     def SetCustomField(self, key, value, listKey="custom_fields"):
+        """ Sets the value of an existing Custom Field
+
+        :param key: Custom Field `placeholder` or `label` (string)
+        :param value: new value for the Custom Field.
+        :param listKey: key to the Custom Fields list. Defaults to "custom_fields".
+        :return: `self`
+        :raises ZohoInvalidOpError: If `self` isn't an existing object.
+        """
         if self._id:
             if self._data:
                 for cf in self._data.get(listKey, []):

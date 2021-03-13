@@ -179,7 +179,7 @@ def test_set_customfield():
     assert so.ID is not None
     assert so.GetCustomField('cf_system_was_printed') is False
 
-    so.SetCustomField('cf_system_was_printed', True)
+    so.SetCustomField('cf_system_was_printed', True).Update()
     assert so.GetCustomField('cf_system_was_printed') is True
 
     soAfter = z.SalesOrder(so.ID)

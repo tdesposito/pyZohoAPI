@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.4.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.4.1) - 2021-03-02
+## [v0.5.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.5.0) - 2021-03-13
+
+<small>[Compare with v0.4.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.4.1...v0.5.0)</small>
+
+### Added
+- Add lots of documentation ([8c2afd6](https://github.com/tdesposito/pyZohoAPI/commit/8c2afd6e26230b97da9b38363bef6746a6249bea) by Todd Esposito).
+- Add setcustomfield ([53de008](https://github.com/tdesposito/pyZohoAPI/commit/53de0085348e66efd047f59d1f91f44842aa16a4) by Todd Esposito).
+
+
+## [v0.4.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.4.1) - 2021-03-03
 
 <small>[Compare with v0.4.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.4.0...v0.4.1)</small>
 

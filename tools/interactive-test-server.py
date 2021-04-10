@@ -82,7 +82,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             frag = f"{form['type']}{'/' + form['id'] if form.get('id') else ''}{'/' + form['xtrapath'] if form.get('xtrapath') else ''}"
             try:
                 rsp = api.get(frag, params['qparams'])
-                params['results'] = json.dumps(rsp)
+                params['results'] = json.dumps(rsp, sort_keys=True)
                 params['apiinfo'] = json.dumps({k:str(v) for k,v in api._ratelimit.items()})
             except ZohoException as e:
                 params['results'] = json.dumps({

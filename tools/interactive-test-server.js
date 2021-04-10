@@ -37,7 +37,14 @@ function onURLChange() {
 
 function formatResults() {
   if (Object.keys(rsp).length !== 0) {
-    results_data.innerText = JSON.stringify(rsp, null, 4)
+    const edopts = {
+      "indentation": 4,
+      "mainMenuBar": false,
+      "mode": "code",
+      "sortObjectKeys": true,
+    }
+    const editor = new JSONEditor(results_data, edopts, rsp)
+    // results_data.innerText = JSON.stringify(rsp, null, 4)
     results_container.classList.remove('hidden')
     param_container.open = false
   } else {

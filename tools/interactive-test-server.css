@@ -14,3 +14,13 @@ pre {
 .hidden {
   display: none;
 }
+
+.ace_editor {
+  font-size: 1rem !important;
+}
+.ace_fold-widget {
+  transform: scale(2.5);
+}
+.ace_fold-widget:hover {
+  border: none !important;
+}

@@ -116,6 +116,16 @@ Books, Inventory
 * [Void()](methods.md#void)
 ```
 
+### SalesPerson
+```{admonition} Sales Persons
+Books, Inventory
+```
+```{admonition} Additional methods
+:class: note
+You can only get the list of all Sales Persons from the API. No other operations
+work.
+```
+
 ### ShipmentOrder
 ```{admonition} Shipment Orders
 Books, Inventory
@@ -161,6 +171,7 @@ Books support is still under development.
 * [Package](#package)
 * [PurchaseOrder](#purchaseorder)
 * [SalesOrder](#salesorder)
+* [SalesPerson](#salesperson)
 * [ShipmentOrder](#shipmentorder)
 * [User](#user)
 

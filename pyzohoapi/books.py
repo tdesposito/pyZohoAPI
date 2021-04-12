@@ -22,4 +22,5 @@ class ZohoBooks(ZohoAPIBase):
     def Organization(self, *args, **kwargs): return objecttypes.Organization(self, *args, **kwargs)
     def PurchaseOrder(self, *args, **kwargs): return objecttypes.PurchaseOrder(self, *args, **kwargs)
     def SalesOrder(self, *args, **kwargs): return objecttypes.SalesOrder(self, *args, **kwargs)
+    def SalesPerson(self, *args, **kwargs): return objecttypes.SalesPerson(self, *args, **kwargs)
     def User(self, *args, **kwargs): return objecttypes.User(self, *args, **kwargs)

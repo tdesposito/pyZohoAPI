@@ -8,7 +8,7 @@ i {
 }
 
 pre {
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .hidden {

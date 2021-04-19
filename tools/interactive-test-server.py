@@ -4,9 +4,11 @@
 import sys
 sys.path.insert(0, "..")
 
+import argparse
+
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
-from os import system
+import os
 from pprint import pprint
 import signal
 import traceback
@@ -15,9 +17,6 @@ import urllib
 from pyzohoapi import *
 from pyzohoapi.exceptions import ZohoException
 from private import testdata
-
-hostName = "localhost"
-serverPort = 8080
 
 params = {
     'orgid': testdata['orgid'],
@@ -41,17 +40,25 @@ apiobjs = {
 }
 
 class RequestHandler(BaseHTTPRequestHandler):
+    @staticmethod
+    def asset_fname(ext):
+        return os.path.join(
+            os.path.dirname(__file__),
+            "serverfiles",
+            os.path.basename(__file__).replace(".py", f".{ext}")
+        )
+
     def sendFile(self, ext, type):
-        with open(__file__.replace(".py", f".{ext}"), "r") as f:
-            contents = f.read()
+        with open(self.asset_fname(ext), "r") as _:
+            contents = _.read()
         self.send_response(200)
         self.send_header("Content-type", f"text/{type}")
         self.end_headers()
         self.wfile.write(bytes(contents, "utf-8"))
 
     def sendTemplate(self):
-        with open(__file__.replace(".py", ".html"), "r") as f:
-            template = f.read()
+        with open(self.asset_fname("html"), "r") as _:
+            template = _.read()
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -95,7 +102,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         return self.do_GET()
 
-if __name__ == "__main__":
+def run_server(hostName, serverPort):
     server = ThreadingHTTPServer((hostName, serverPort), RequestHandler)
     server.daemon_threads = True
     server.allow_reuse_address = True
@@ -111,9 +118,9 @@ if __name__ == "__main__":
 
     print(f"Server started http://{hostName}:{serverPort}")
     print("Press Ctrl-C to exit.")
-    system("title pyZohoAPI Testing Server")
+    os.system("title pyZohoAPI Testing Server")
 
-    system(f"start http://{hostName}:{serverPort}")
+    os.system(f"start http://{hostName}:{serverPort}")
     try:
         while True:
             sys.stdout.flush()
@@ -122,3 +129,11 @@ if __name__ == "__main__":
         pass
 
     server.server_close()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", type=int, help="TCP port to serve from")
+    args = parser.parse_args()
+
+    run_server("localhost", args.port or 8080)

@@ -40,6 +40,17 @@ Deletes the image associated with an object.
 Marks an object as "Draft". Returns True on success. Raises `ZohoInvalidOpError`
 if called on a New or List-of object.
 
+### `MakeBundle()`
+Bundles a CompositeItem n-Many times. Provide the number of bundles to make as the first parameter, and optionally these keyword parameters:
+  * `bundle_date` (string): the date, in "YYYY-MM-DD" format, for the bundles. Defaults to today.
+  * `purchase_account_id` (string): the ID of the corresponding purchase account.
+  * `warehouse_id` (string): the ID of the corresponding warehouse (required if warehouses are enabled).
+
+```{code-block} python
+>>> composite.MakeBundle(10, purchase_account_id="9878765432165432109")
+Bundle #9876543210987654321
+```
+
 ### `UpdateBilling()`
 Updates the related Billing Address of the object.
 ```{code-block} python

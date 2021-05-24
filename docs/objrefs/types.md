@@ -27,6 +27,7 @@ Inventory
 
 * [Activate()](methods.md#activate)
 * [Deactivate()](methods.md#deactivate)
+* [MakeBundle()](methods.md#makebundle)
 ```
 
 ### Contact

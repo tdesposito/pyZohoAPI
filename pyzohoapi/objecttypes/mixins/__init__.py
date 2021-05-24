@@ -3,6 +3,8 @@
 
 from ...exceptions import *
 
+from .CompositeItemOps import WithBundle
+
 class WithActivate:
     """Adds `Activate()` and `Deactivate()`"""
     def _do_operation(self, status, funcname):

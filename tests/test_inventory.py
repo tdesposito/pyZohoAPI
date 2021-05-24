@@ -10,7 +10,7 @@ from pyzohoapi.exceptions import ZohoException
 
 from private import testdata
 
-z = ZohoInventory(testdata['orgid'], testdata['region'], **testdata['api'])
+z = ZohoInventory(testdata.orgid, testdata.region, **testdata.api)
 
 def test_empty_user():
     c = z.User()
@@ -18,24 +18,24 @@ def test_empty_user():
 
 
 def test_get_user():
-    c = z.User(testdata['inventory']['user']['id'])
+    c = z.User(testdata.inventory.user.id)
     assert c.IsLoaded
     assert not c.IsList
-    assert c.email == testdata['inventory']['user']['email']
+    assert c.email == testdata.inventory.user.email
 
 
 def test_search_user():
-    c = z.User(email=testdata['inventory']['user']['email'])
+    c = z.User(email=testdata.inventory.user.email)
     assert c.IsLoaded
     assert c.IsList
     assert repr(c) == "List of User objects"
     one = c.First()
     assert one.IsLoaded
-    assert one.ID == testdata['inventory']['user']['id']
+    assert one.ID == testdata.inventory.user.id
 
 
 def test_search_notfound():
-    c = z.User(email=testdata['inventory']['user']['invalid-email'])
+    c = z.User(email=testdata.inventory.user.invalid_email)
     assert c.IsLoaded
     assert c.IsList
     assert repr(c) == "List of User objects"
@@ -55,9 +55,9 @@ def test_filter_list_raw_user():
     c = z.User()
     assert not c.IsLoaded
     count = 0
-    for i in c.Iter(raw=True, email=testdata['inventory']['user']['email']):
+    for i in c.Iter(raw=True, email=testdata.inventory.user.email):
         count += 1
-        assert i.get('email') == testdata['inventory']['user']['email']
+        assert i.get('email') == testdata.inventory.user.email
     assert count == 1
 
 
@@ -72,38 +72,38 @@ def test_filter_list_user():
     c = z.User()
     assert not c.IsLoaded
     count = 0
-    for i in c.Iter(email=testdata['inventory']['user']['email']):
+    for i in c.Iter(email=testdata.inventory.user.email):
         count += 1
         assert i.__class__.__name__ == "User"
         assert i.IsLoaded
-        assert i.email == testdata['inventory']['user']['email']
+        assert i.email == testdata.inventory.user.email
     assert count == 1
 
 
 def test_so_get_related():
-    so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
+    so = z.SalesOrder(testdata.inventory.salesorder.id)
     assert so.IsLoaded
-    assert so.Number == testdata['inventory']['salesorder']['number']
+    assert so.Number == testdata.inventory.salesorder.number
     cust = so.GetRelated(z.Contact, "customer_id")
     assert cust.IsLoaded
-    assert cust.contact_name == testdata['inventory']['salesorder']['contact_name']
+    assert cust.contact_name == testdata.inventory.salesorder.contact_name
 
 
 def test_so_iter_related():
-    so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
+    so = z.SalesOrder(testdata.inventory.salesorder.id)
     assert so.IsLoaded
     for item in so.IterRelatedList(z.Item, "line_items", "item_id"):
         assert item.IsLoaded
-        assert item.sku == testdata['inventory']['salesorder']['line_item_sku']
+        assert item.sku == testdata.inventory.salesorder.line_item_sku
         break
 
 
 def test_so_map_related():
-    so = z.SalesOrder(testdata['inventory']['salesorder']['id'])
+    so = z.SalesOrder(testdata.inventory.salesorder.id)
     assert so.IsLoaded
     for item in so.MapRelatedList(z.Item, "line_items", "item_id"):
         assert item.object.IsLoaded
-        assert item.meta.sku == testdata['inventory']['salesorder']['line_item_sku']
+        assert item.meta.sku == testdata.inventory.salesorder.line_item_sku
         assert item.meta.sku == item.object.sku
         break
 
@@ -120,32 +120,32 @@ def test_create_customer():
                         'is_primary_contact': True,
                     }]
     c.is_taxable = True
-    c.tax_id = testdata['inventory']['newuser']['tax_id']
-    c.tax_name = testdata['inventory']['newuser']['tax_name']
-    c.payment_terms = testdata['inventory']['newuser']['payment_terms']
-    c.payment_terms_label = testdata['inventory']['newuser']['payment_terms_label']
+    c.tax_id = testdata.inventory.salesorder.newuser.tax_id
+    c.tax_name = testdata.inventory.salesorder.newuser.tax_name
+    c.payment_terms = testdata.inventory.salesorder.newuser.payment_terms
+    c.payment_terms_label = testdata.inventory.salesorder.newuser.payment_terms_label
 
     c.Create()
     assert c.ID is not None
-    testdata['inventory']['newuser'] = {'id': c.ID}
+    testdata.inventory.salesorder.newuser = {'id': c.ID}
 
 
 def test_update_customer():
     assert testdata['inventory'].get('newuser',{}).get('id', False)
-    c = z.Contact(testdata['inventory']['newuser']['id'])
+    c = z.Contact(testdata.inventory.salesorder.newuser.id)
     assert c.IsLoaded
     assert c.shipping_address.city == ""
-    c.shipping_address = testdata['inventory']['newaddress']
+    c.shipping_address = testdata.inventory.salesorder.newaddress
     c.Update()
     del c
-    c = z.Contact(testdata['inventory']['newuser']['id'])
+    c = z.Contact(testdata.inventory.salesorder.newuser.id)
     assert c.IsLoaded
-    assert c.shipping_address.city == testdata['inventory']['newaddress']['city']
+    assert c.shipping_address.city == testdata.inventory.salesorder.newaddress.city
 
 
 def test_delete_customer():
     assert testdata['inventory'].get('newuser',{}).get('id', False)
-    c = z.Contact(testdata['inventory']['newuser']['id'])
+    c = z.Contact(testdata.inventory.salesorder.newuser.id)
     assert c.IsLoaded
     c.Delete()
     assert c.IsDeleted
@@ -153,11 +153,11 @@ def test_delete_customer():
 def util_createso():
     so = z.SalesOrder()
     so.salesorder_number = "TEST-SO-DO-NOT-USE"
-    so.customer_id = testdata['inventory']['customer']['id']
-    so.tax_id = testdata['inventory']['customer']['tax_id']
-    so.salesperson_id = testdata['inventory']['customer']['salesperson_id']
+    so.customer_id = testdata.inventory.salesorder.customer.id
+    so.tax_id = testdata.inventory.salesorder.customer.tax_id
+    so.salesperson_id = testdata.inventory.salesorder.customer.salesperson_id
     so.line_items = []
-    so.line_items.append(testdata['inventory']['item'])
+    so.line_items.append(testdata.inventory.salesorder.item)
     so.Create(ignore_auto_number_generation="true")
     return so
 

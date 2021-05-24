@@ -79,7 +79,6 @@ class WithVoid(_WithStatus):
 class _WithAspect:
     def _updateAspect(self, aspect, aspect_id, data):
         data = self._api.put(self._url_fragment(extraPath=[aspect, aspect_id]), data, "")
-        import pprint; pprint.pprint(data, indent=2)
         if data['code'] == 0:
             return True
         return False

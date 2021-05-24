@@ -29,7 +29,8 @@ We use [pytest](https://docs.pytest.org/en/stable/) for testing.
 Tests rely on a python module **NOT INCLUDED IN THIS REPOSITORY** called
 `private` which exports a dictionary called `testdata`, something like:
 ```{code-block} python
-testdata = {
+from pyzohoapi.core.collection import DottedDict
+testdata = DottedDict({
     'orgid': "your-org-id",
     'region': "your-region",
     'api': {
@@ -43,7 +44,7 @@ testdata = {
     'books': { ... },
     'inventory': { ... },
     ...
-}
+})
 ```
 ```{danger}
 The tests rely on actual secrets data to interact with the live Zoho APIs, and
@@ -58,11 +59,15 @@ To run the tests:
 ```{code-block} console
 $ poetry run pytest
 ```
+Or, a particular test, such as one you added:
+```{code-block} console
+$ poetry run pytest -k my_test_name
+```
 
 All the tests are under the `tests` directory, naturally. Contained therein are:
 * `__init__.py` - lets Python consider the tests part of a module.
 * `test_00_pyzohoapi.py` - tests for the primitives in the ZohoAPI base class.
-* `test_inventory.py` - tests specifically for ZohoInventory.
+* `test_inventory{_.*}.py` - tests specifically for ZohoInventory.
 
 Tests you add should follow the same pattern; Additional tests for
 the already-present APIs should either be added into the existing `test_...`

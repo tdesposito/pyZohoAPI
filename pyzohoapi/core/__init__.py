@@ -254,7 +254,7 @@ class ZohoObjectBase:
                 self._reload(data)
             else:
                 if page:
-                    self._data.extend(data.get(self._plural))
+                    self._data.extend(DottedList(data.get(self._plural)))
                 else:
                     self._data = DottedList(data.get(self._plural))
                 if data.get('page_context',{}).get('has_more_page'):

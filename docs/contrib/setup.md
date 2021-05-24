@@ -56,7 +56,7 @@ require. See the tests codes themselves for the details.
 
 To run the tests:
 ```{code-block} console
-$ pytest
+$ poetry run pytest
 ```
 
 All the tests are under the `tests` directory, naturally. Contained therein are:

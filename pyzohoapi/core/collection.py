@@ -22,7 +22,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Modified
+#==============================================================================#
+# Modified slighly to include in pyZohoAPI
+# We've removed py2 support, and added upstream-but-unmerged pullreq #14
+
 import collections
 import json
 import re

@@ -33,6 +33,7 @@ release = '0.5.0'
 extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.autodoc",
+    "sphinx.ext.viewcode",
     "myst_parser",
     "sphinx_copybutton",
 ]

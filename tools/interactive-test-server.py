@@ -80,7 +80,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         rawform = self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8')
         form = { k:v for k,v in [e.split("=") for e in rawform.split("&")] if v }
-        for k in ['qparams', 'xtrapath']:
+        for k in ['type', 'qparams', 'xtrapath']:
             if k in form:
                 form[k] = urllib.parse.unquote_plus(form[k])
         params.update(form)

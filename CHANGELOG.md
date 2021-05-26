@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.6.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.6.0) - 2021-05-26
+
+<small>[Compare with v0.5.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.5.0...v0.6.0)</small>
+
+### Added
+- Add makebundle() function for compositeitem object ([c8bbf95](https://github.com/tdesposito/pyZohoAPI/commit/c8bbf952259880771ca8c3f01f3c4408549d0203) by Todd Esposito).
+- Add "salesperson" object ([9f397d2](https://github.com/tdesposito/pyZohoAPI/commit/9f397d297237bb92591840eb5c8023f170c50cc1) by Todd Esposito).
+
+### Fixed
+- Fix issue with test server url quoting "type" params ([265cef1](https://github.com/tdesposito/pyZohoAPI/commit/265cef1fe273713e42169af5759f9023d8a6ea88) by Todd Esposito).
+- Fix published debug-code! yikes! ([18be5b8](https://github.com/tdesposito/pyZohoAPI/commit/18be5b8fd622c855d77e05582385dd3040e8435a) by Todd Esposito).
+- Fix behavior on extending a list-of when paging ([65d564e](https://github.com/tdesposito/pyZohoAPI/commit/65d564eb75917b01038021dc627b59a717d50c71) by Todd Esposito).
+
+### Removed
+- Remove superfluous file ([e2694b9](https://github.com/tdesposito/pyZohoAPI/commit/e2694b959d14a51f6bbd8c68dafca652389db5f4) by Todd Esposito).
+
+
 ## [v0.5.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.5.0) - 2021-03-13
 
 <small>[Compare with v0.4.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.4.1...v0.5.0)</small>

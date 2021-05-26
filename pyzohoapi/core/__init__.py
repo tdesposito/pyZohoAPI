@@ -334,15 +334,6 @@ class ZohoObjectBase:
             return self.__class__(self._api, self._data[0][self._id_field])
         return self.__class__(self._api)
 
-    def GetCustomField(self, key, listKey="custom_fields", default=None):
-        if self._id:
-            if self._data:
-                for cf in self._data.get(listKey, []):
-                    if key in [cf['label'], cf['placeholder']]:
-                        return cf['value']
-            return default
-        raise ZohoInvalidOpError("GetCustomField", self)
-
     def GetRelated(self, targetType, key):
         if self._id and self._data:
             if isinstance(self._data.get(key), str):
@@ -393,24 +384,6 @@ class ZohoObjectBase:
                 yield DottedDict({'meta': item.to_python(), 'object': targetType(item.get(idField))})
         else:
             raise ZohoInvalidOpError("MapRelatedList", self)
-
-    def SetCustomField(self, key, value, listKey="custom_fields"):
-        """ Sets the value of an existing Custom Field
-
-        :param key: Custom Field `placeholder` or `label` (string)
-        :param value: new value for the Custom Field.
-        :param listKey: key to the Custom Fields list. Defaults to "custom_fields".
-        :return: `self`
-        :raises ZohoInvalidOpError: If `self` isn't an existing object.
-        """
-        if self._id:
-            if self._data:
-                for cf in self._data.get(listKey, []):
-                    if key in [cf['label'], cf['placeholder']]:
-                        cf['value'] = value
-                        return self
-            return self
-        raise ZohoInvalidOpError("SetCustomField", self)
 
     def Update(self):
         if self._id and self._data:

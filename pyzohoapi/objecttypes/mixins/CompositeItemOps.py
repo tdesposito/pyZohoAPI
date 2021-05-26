@@ -4,7 +4,7 @@ import datetime
 
 from ...exceptions import *
 
-class WithBundle:
+class HasBundle:
     def MakeBundle(self, qty, bundle_date=None, purchase_account_id=None, warehouse_id=None):
         """ Create a bundle for a CompositeItem
 

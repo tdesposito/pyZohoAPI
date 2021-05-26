@@ -92,31 +92,6 @@ True
 mapped object, it returns *self*, so it's safe to use anywhere. Useful if you
 know your search will only return one result.
 
-### `GetCustomField()`
-Returns the value of a Custom Field. Let's say you have a Custom Field on your
-Items labeled "Bin Location" and named "cf_bin_location" (the Zoho field
-`placeholder` name). Then you can:
-```{code-block} python
->>> item.GetCustomField('cf_bin_location')
-A234
->>> item.GetCustomField('Bin Location')
-A234
-```
-If the Custom Field isn't part of the object, `GetCustomField()` returns None.
-You can alter that behavior:
-```{code-block} python
->>> item.GetCustomField('Invalid Label')
-None
->>> item.GetCustomField('Invalid Label', default="Sup?")
-'Sup?'
-```
-If the Custom Field list of the object isn't "custom_fields", or there's more
-than one such list:
-```{code-block} python
->>> item.GetCustomField('cf_bin_location', listkey='item_custom_fields')
-A234
-```
-
 ### `GetRelated()`
 For object types which includes references to other object types,
 `GetRelated()` will return that object:
@@ -217,32 +192,6 @@ Item #345
 {'meta': {'item_id': "123", ...}, 'object': Item #123}
 {'meta': {'item_id': "345", ...}, 'object': Item #345}
 ```
-
-### `SetCustomField()`
-**_New in v0.5.0_**
-
-Sets the value of a custom field **already existing** in the object, and returns
-the object. You pass either the custom field `placeholder` or `label` as the
-first parameter, and the new value as the second. `SetCustomField()` returns the
-object, so it can be chained.
-
-```{warning}
-This method will NOT add a custom field to the object.
-```
-
-You should check for the existence of the field you want to set with
-`GetCustomField()` first. If it exists, use this method. If not, add the field
-to the object's `.custom_fields` list with something like:
-```{code-block} python
->>> if sales_order.GetCustomField('cf_my_field') is None:
-...   sales_order.custom_fields.append({'placeholder': 'cf_my_field', 'value': 'my-value'})
-... else:
-...   sales_order.SetCustomField('cf_my_field', 'my-value')
->>> sales_order.Update()
-```
-This is because of ambiguity in the Zoho API; sometimes to add a custom field it
-wants `placeholder` and sometimes it wants `label` so you have to do this
-manually. Also, some types don't support custom fields. Beware.
 
 ### `Update()`
 Changes you make to the fields in an existing Zoho object are pushed into Zoho

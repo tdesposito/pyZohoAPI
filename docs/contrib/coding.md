@@ -87,24 +87,24 @@ perform _Mark as Active_ and _Mark as Inactive_ operations.
 ZohoObject classes are created by the `ZohoObjectFactory()` function
 in `pyzohoapi/objecttypes/__init__.py`. In this case, we use:
 ```{code-block} python
-CompositeItem = ZohoObjectFactory("CompositeItem", nameform="composite_item", idform="composite_item", mixins=[WithActivate])
+CompositeItem = ZohoObjectFactory("CompositeItem", nameform="composite_item", idform="composite_item", mixins=[HasActivate])
 ```
 
 * _CompositeItem = ..._ is the Python class name exposed by `pyzohoapi.objecttypes`.
 * _"CompositeItem"..._ will be pluralized and lowercased to create the URL fragment.
 * _nameform="composite_item"..._ defines the keys (singular and plural) of the objects in the JSON response data. This is only needed if `nameform` is different from the lowercased first parameter.
 * _idform="composite_item"..._ defines the root of the key used to determine the ID and Number (when available) of the object. So the ID and Number keys are `{idform}_id` and `{idform}_number`. This is only needed if `idform` is different from the lowercased first parameter.
-* _mixins=[WithActivate]..._ adds the `Activate()` and `Deactivate()` operations by way of a mixin in `pyzohoapi.objecttypes.mixins`; keep reading for how that works.
+* _mixins=[HasActivate]..._ adds the `Activate()` and `Deactivate()` operations by way of a mixin in `pyzohoapi.objecttypes.mixins`; keep reading for how that works.
 
 ## Extending ZohoObject Classes
 The `pyzohoapi.objecttypes.mixins` module contains classes which expose one
 or more additional methods to add to particular object types. In the example
-above, we've mixed in `WithActivate` class, which adds the `Activate()` and
+above, we've mixed in `HasActivate` class, which adds the `Activate()` and
 `Deactive()` methods to the `CompositeItem` class. See [Type-Specific
 Methods](/objrefs/methods.md) for the breakdown of the existing methods.
 
 ### Examine the API Docs
-We'll look at the existing mixin `WithActivate` as an example.
+We'll look at the existing mixin `HasActivate` as an example.
 
 Looking at the API Docs, we see that there are several different Zoho objects
 which support the "Mark as Active" and "Mark as Inactive" operations. Every
@@ -120,15 +120,15 @@ be applied to the appropriate object types.
 
 ### Create a Mixin Class
 ```{code-block} python
-class WithActivate:
+class HasActivate:
     ...
 ```
-The pattern for the class name is `With{Feature}`.
+The pattern for the class name is `Has{Feature}`.
 
 ### Create Internal Method(s)
 ```{code-block} python
 :emphasize-lines: 2
-class WithActivate:
+class HasActivate:
     def _do_operation(self, status, funcname):
         ...
 ```
@@ -145,7 +145,7 @@ and the name of the function being called (for exceptions).
 ### Ensure the Operation is Valid
 ```{code-block} python
 :emphasize-lines: 3, 5
-class WithActivate:
+class HasActivate:
     def _do_operation(self, status, funcname):
         if self._id and self._data:
             ...
@@ -158,7 +158,7 @@ already exist (they have `_data`). If those conditions aren't met, we'll raise a
 ### Perform the API Call
 ```{code-block} python
 :emphasize-lines: 4-9
-class WithActivate:
+class HasActivate:
     def _do_operation(self, status, funcname):
       if self._id and self._data:
           try:
@@ -181,7 +181,7 @@ In this case, if `post()` raises an exception, we suppress it and return `False`
 ### Create Public Method(s)
 ```{code-block} python
 :emphasize-lines: 3-7
-class WithActivate:
+class HasActivate:
     ...
     def Activate(self):
         return self._do_operation('active', "Activate")

@@ -3,9 +3,19 @@
 
 from ...exceptions import *
 
-from .CompositeItemOps import WithBundle
+from .CompositeItemOps import HasBundle
+from .CustomFields import HasCustomFields
 
-class WithActivate:
+__all__ = [
+    'HasActivate',
+    'HasAddresses',
+    'HasBundle',
+    'HasConfirm', 'HasDraft', 'HasVoid',
+    'HasCustomFields',
+    'HasImage',
+]
+
+class HasActivate:
     """Adds `Activate()` and `Deactivate()`"""
     def _do_operation(self, status, funcname):
         if self._id and self._data:
@@ -24,7 +34,7 @@ class WithActivate:
         return self._do_operation('inactive', "Deactivate")
 
 
-class WithImage:
+class HasImage:
     """Adds `AddImage()`, `DeleteImage()` and `GetImage()`"""
     def AddImage(self, name, image, type="image/jpeg"):
         if self._id:
@@ -43,7 +53,7 @@ class WithImage:
         raise ZohoInvalidOpError("GetImage", self)
 
 
-class _WithStatus:
+class _HasStatus:
     def _mark(self, status):
         if self._id:
             try:
@@ -54,7 +64,7 @@ class _WithStatus:
         return None
 
 
-class WithConfirm(_WithStatus):
+class HasConfirm(_HasStatus):
     """Adds `Confirm()`"""
     def Confirm(self):
         if not self._id:
@@ -62,7 +72,7 @@ class WithConfirm(_WithStatus):
         return self._mark('confirmed')
 
 
-class WithDraft(_WithStatus):
+class HasDraft(_HasStatus):
     """Adds `Draft()`"""
     def Draft(self):
         if not self._id:
@@ -70,7 +80,7 @@ class WithDraft(_WithStatus):
         return self._mark('draft')
 
 
-class WithVoid(_WithStatus):
+class HasVoid(_HasStatus):
     """Adds `Void()`"""
     def Void(self):
         if not self._id:
@@ -78,7 +88,7 @@ class WithVoid(_WithStatus):
         return self._mark('void')
 
 
-class _WithAspect:
+class _HasAspect:
     def _updateAspect(self, aspect, aspect_id, data):
         data = self._api.put(self._url_fragment(extraPath=[aspect, aspect_id]), data, "")
         if data['code'] == 0:
@@ -86,7 +96,7 @@ class _WithAspect:
         return False
 
 
-class WithAddresses(_WithAspect):
+class HasAddresses(_HasAspect):
     """Adds `UpdateBilling()` and `UpdateShipping()`"""
     def UpdateBilling(self):
         if self._id and self._data:

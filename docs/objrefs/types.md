@@ -8,18 +8,41 @@ which include them.
 
 We note which [additional methods](/objrefs/methods.md) each object type
 includes, if any.
+
 ### Account
-```{admonition} Chart-Of-Accounts
+```{admonition} Available In
 Books, Inventory
 ```
 
+### Bill
+```{admonition} Available In
+Inventory
+```
+```{admonition} Additional methods
+:class: tip
+
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
+```
+
 ### Bundle
-```{admonition} Bundle
+```{admonition} Available In
 Inventory
 ```
 
+### CreditNote
+```{admonition} Available In
+Inventory
+```
+```{admonition} Additional methods
+:class: tip
+
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
+```
+
 ### CompositeItem
-```{admonition} Composite Items
+```{admonition} Available In
 Inventory
 ```
 ```{admonition} Additional methods
@@ -27,11 +50,13 @@ Inventory
 
 * [Activate()](methods.md#activate)
 * [Deactivate()](methods.md#deactivate)
+* [GetCustomField()](methods.md#getcustomfield)
 * [MakeBundle()](methods.md#makebundle)
+* [SetCustomField()](methods.md#setcustomfield)
 ```
 
 ### Contact
-```{admonition} Contacts
+```{admonition} Available In
 Inventory
 ```
 ```{admonition} Additional methods
@@ -44,12 +69,12 @@ Inventory
 ```
 
 ### CustomerPayment
-```{admonition} Customer Payments
+```{admonition} Available In
 Inventory
 ```
 
 ### Document
-```{admonition} Documents
+```{admonition} Available In
 Books, Inventory
 ```
 Retrieving a List-of Document objects will get your the typical List-of. Getting
@@ -63,12 +88,12 @@ with care.
 ```
 
 ### Invoice
-```{admonition} Invoices
+```{admonition} Available In
 Books, Inventory
 ```
 
 ### Item
-```{admonition} Items
+```{admonition} Available In
 Books, Inventory
 ```
 ```{admonition} Additional methods
@@ -78,10 +103,12 @@ Books, Inventory
 * [AddImage()](methods.md#addimage)
 * [Deactivate()](methods.md#deactivate)
 * [DeleteImage()](methods.md#deleteimage)
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
 ```
 
 ### ItemGroup
-```{admonition} Item Groups
+```{admonition} Available In
 Inventory
 ```
 ```{admonition} Additional methods
@@ -92,33 +119,35 @@ Inventory
 ```
 
 ### Organization
-```{admonition} Organizations
+```{admonition} Available In
 Books, Inventory
 ```
 
 ### Package
-```{admonition} Packages
+```{admonition} Available In
 Inventory
 ```
 
 ### PurchaseOrder
-```{admonition} Purchase Orders
+```{admonition} Available In
 Books, Inventory
 ```
 
 ### SalesOrder
-```{admonition} Sales Orders
+```{admonition} Available In
 Books, Inventory
 ```
 ```{admonition} Additional methods
 :class: tip
 
 * [Confirm()](methods.md#confirm)
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
 * [Void()](methods.md#void)
 ```
 
 ### SalesPerson
-```{admonition} Sales Persons
+```{admonition} Available In
 Books, Inventory
 ```
 ```{admonition} Additional methods
@@ -128,12 +157,12 @@ work.
 ```
 
 ### ShipmentOrder
-```{admonition} Shipment Orders
+```{admonition} Available In
 Books, Inventory
 ```
 
 ### User
-```{admonition} Users
+```{admonition} Available In
 Books, Inventory
 ```
 ```{admonition} Additional methods
@@ -141,6 +170,8 @@ Books, Inventory
 
 * [Activate()](methods.md#activate)
 * [Deactivate()](methods.md#deactivate)
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
 ```
 
 ## By Product

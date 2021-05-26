@@ -214,3 +214,16 @@ Books support is still under development.
 ### Subscriptions
 ```{include} ../snippets/todo-future-release.markdown
 ```
+
+## Next To Add
+* ContactPerson
+* ItemAdjustment
+* TransferOrder
+* RetainerInvoice
+* SalesReturn
+* PurchaseReceive
+* VendorCredit
+* Warehouse
+* PriceList
+* Tax
+* Currency

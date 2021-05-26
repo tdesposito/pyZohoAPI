@@ -89,6 +89,32 @@ To use sphinx-autobuild:
 $  poetry run sphinx-autobuild docs docs/build/html --open-browser --watch .
 ```
 
+## Commits, Versioning and ChangeLog
+
+We adhere to [Semantic Versioning](https://semver.org) and [Conventional
+Commits](https://www.conventionalcommits.org/)<sup>*</sup> and apply the
+principles espoused on [Keep A Changelog](https://keepachangelog.com).
+
+We use [BumpyTrack](https://github.com/nandilugio/bumpytrack) for versioning,
+thus:
+```{code-block} console
+$ bumpytrack {aspect} --config-path bumpytrack.toml
+```
+Of course, `{aspect}` should be `major`, `minor` or `patch` depending on the
+actual aspect we are bumping.
+
+We use [Git-Changelog](https://github.com/pawamoy/git-changelog) to generate our
+CHANGELOG.md, thus:
+```{code-block} console
+$ git-changelog . -o CHANGELOG.md
+```
+
+Naturally, pull-requests will be bumped/changelogged by the maintainer(s), but
+if you're going to issue a pull request, please ensure your commit messages will
+be parsed properly.
+
+_<sup>*</sup>Going forward. Previous commits may not._
+
 ## Helpful Dev and Debug Tools
 There are two tools in the `tools` directory to make development and testing
 (hopefully) easier.

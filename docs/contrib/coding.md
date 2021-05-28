@@ -72,12 +72,12 @@ we'll get:
         "composite_item_id": "9999999000001049029",
 ```
 So we see that:
-* The object type (as defined by Zoho) is "Composite Items"
-* The Python class name should be **CompositeItem** (singular)
-* The URL fragment is `compositeitems` (plural)
-* The "list of **Composite Items**" key is `composite_items` (plural)
-* The "single **Composite Item**" key is `composite_item` (singular)
-* The key for the unique ID of each **Composite Item** is `composite_item_id`
+* The object type (as defined by Zoho) is "Composite Items".
+* The Python class name should be **CompositeItem** (singular).
+* The URL fragment is `compositeitems` (plural). This is the pluralized, lowercase version of the class name.
+* The "list of **Composite Items**" key is `composite_items` (plural). This is different from the class name.
+* The "single **Composite Item**" key is `composite_item` (singular). This is different from the class name.
+* The key for the unique ID of each **Composite Item** is `composite_item_id`. This is different from the class name.
 
 Further inspection of the API docs indicate that, in addition the usual
 _Create_, _Retrieve_, _Update_, _Delete_ and _List All_ operations, we can also
@@ -87,14 +87,16 @@ perform _Mark as Active_ and _Mark as Inactive_ operations.
 ZohoObject classes are created by the `ZohoObjectFactory()` function
 in `pyzohoapi/objecttypes/__init__.py`. In this case, we use:
 ```{code-block} python
-CompositeItem = ZohoObjectFactory("CompositeItem", nameform="composite_item", idform="composite_item", mixins=[HasActivate])
+CompositeItem = ZohoObjectFactory("CompositeItem",
+    responseKey="composite_item", idKey="composite_item_id",
+    mixins=[HasActivate, HasBundle, HasCustomFields])
 ```
 
-* _CompositeItem = ..._ is the Python class name exposed by `pyzohoapi.objecttypes`.
-* _"CompositeItem"..._ will be pluralized and lowercased to create the URL fragment.
-* _nameform="composite_item"..._ defines the keys (singular and plural) of the objects in the JSON response data. This is only needed if `nameform` is different from the lowercased first parameter.
-* _idform="composite_item"..._ defines the root of the key used to determine the ID and Number (when available) of the object. So the ID and Number keys are `{idform}_id` and `{idform}_number`. This is only needed if `idform` is different from the lowercased first parameter.
-* _mixins=[HasActivate]..._ adds the `Activate()` and `Deactivate()` operations by way of a mixin in `pyzohoapi.objecttypes.mixins`; keep reading for how that works.
+* _"CompositeItem"_ is the Python class name exposed by `pyzohoapi.objecttypes`.
+* _"CompositeItem"_ will be pluralized and lowercased to create the URL fragment. If we needed to use a different URL, we'd use the `urlPath` parameter to override the default.
+* _responseKey="composite_item"..._ defines the keys (singular and plural) of the objects in the JSON response data. This is needed because the corresponding JSON key is not the same as the class name.
+* _idKey="composite_item_id"_ defines the root of the key used to determine the ID of the object.  This is needed because the corresponding JSON key is not the same as the class name.
+* _mixins=[HasActivate]_ adds the `Activate()` and `Deactivate()` operations by way of a mixin in `pyzohoapi.objecttypes.mixins`; keep reading for how that works.
 
 ## Extending ZohoObject Classes
 The `pyzohoapi.objecttypes.mixins` module contains classes which expose one

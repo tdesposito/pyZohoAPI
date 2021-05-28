@@ -59,7 +59,7 @@ class ZohoMethodNotAllowed(ZohoException):
 
 class ZohoInvalidOpError(ZohoException):
     def __init__(self, op, target):
-        if target.ID is false:
+        if target.ID is False:
             super().__init__(f"Can't call {op} on a deleted {target.__class__.__name__}")
         elif target.IsList:
             super().__init__(f"Can't call {op} on a list-of {target.__class__.__name__}")

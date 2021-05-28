@@ -51,6 +51,9 @@ CustomerPayment = ZohoObjectFactory("CustomerPayment",
 Document = ZohoObjectFactory("Document", raw=True)
 Invoice = ZohoObjectFactory("Invoice", mixins=[HasCustomFields])
 Item = ZohoObjectFactory("Item", mixins=[HasActivate, HasCustomFields, HasImage])
+ItemAdjustment = ZohoObjectFactory("ItemAdjustment",
+    urlPath="inventoryadjustments", responseKey="inventory_adjustment", 
+    idKey="inventory_adjustment_id")
 ItemGroup = ZohoObjectFactory("ItemGroup", idKey="group_id",
     responseKey="group", mixins=[HasActivate])
 Organization = ZohoObjectFactory("Organization")

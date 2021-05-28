@@ -106,6 +106,10 @@ Books, Inventory
 * [GetCustomField()](methods.md#getcustomfield)
 * [SetCustomField()](methods.md#setcustomfield)
 ```
+### ItemAdjustment
+```{admonition} Available In
+Inventory
+```
 
 ### ItemGroup
 ```{admonition} Available In
@@ -198,6 +202,7 @@ Books support is still under development.
 * [Document](#document)
 * [Invoice](#invoice)
 * [Item](#item)
+* [ItemAdjustment](#itemadjustment)
 * [ItemGroup](#itemgroup)
 * [Organization](#organization)
 * [Package](#package)
@@ -217,8 +222,6 @@ Books support is still under development.
 
 ## Next To Add
 * ContactPerson
-* ItemAdjustment
-* TransferOrder
 * RetainerInvoice
 * SalesReturn
 * PurchaseReceive

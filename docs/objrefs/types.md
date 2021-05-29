@@ -165,6 +165,12 @@ work.
 Books, Inventory
 ```
 
+### TransferOrder
+```{admonition} Available In
+Inventory
+```
+
+
 ### User
 ```{admonition} Available In
 Books, Inventory
@@ -210,6 +216,7 @@ Books support is still under development.
 * [SalesOrder](#salesorder)
 * [SalesPerson](#salesperson)
 * [ShipmentOrder](#shipmentorder)
+* [TransferOrder](#transferorder)
 * [User](#user)
 
 ### Invoice

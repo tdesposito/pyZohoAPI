@@ -26,4 +26,5 @@ class ZohoInventory(ZohoAPIBase):
     def SalesOrder(self, *args, **kwargs): return objecttypes.SalesOrder(self, *args, **kwargs)
     def SalesPerson(self, *args, **kwargs): return objecttypes.SalesPerson(self, *args, **kwargs)
     def ShipmentOrder(self, *args, **kwargs): return objecttypes.ShipmentOrder(self, *args, **kwargs)
+    def TransferOrder(self, *args, **kwargs): return objecttypes.TransferOrder(self, *args, **kwargs)
     def User(self, *args, **kwargs): return objecttypes.User(self, *args, **kwargs)

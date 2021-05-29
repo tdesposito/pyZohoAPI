@@ -52,7 +52,7 @@ Document = ZohoObjectFactory("Document", raw=True)
 Invoice = ZohoObjectFactory("Invoice", mixins=[HasCustomFields])
 Item = ZohoObjectFactory("Item", mixins=[HasActivate, HasCustomFields, HasImage])
 ItemAdjustment = ZohoObjectFactory("ItemAdjustment",
-    urlPath="inventoryadjustments", responseKey="inventory_adjustment", 
+    urlPath="inventoryadjustments", responseKey="inventory_adjustment",
     idKey="inventory_adjustment_id")
 ItemGroup = ZohoObjectFactory("ItemGroup", idKey="group_id",
     responseKey="group", mixins=[HasActivate])
@@ -65,4 +65,7 @@ SalesPerson = ZohoObjectFactory("SalesPerson")
 ShipmentOrder = ZohoObjectFactory("ShipmentOrder",
     responseKey="shipment_order", idKey="shipment_id",
     numberKey="shipment_number", mixins=[HasCustomFields])
+TransferOrder = ZohoObjectFactory("TransferOrder",
+    responseKey="transfer_order",
+    idKey="transfer_order_id", numberKey="transfer_order_number")
 User = ZohoObjectFactory("User", mixins=[HasActivate, HasCustomFields])

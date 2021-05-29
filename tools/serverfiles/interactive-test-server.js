@@ -13,6 +13,8 @@ const results_data = document.getElementById("results")
 const apiinfo_container = document.getElementById("apiinfo_container")
 const apiinfo_data = document.getElementById("apiinfo")
 
+const formed_url = document.getElementById("formed_url")
+const reflected_url = document.getElementById("reflected_url")
 const url_api =  document.getElementById("url_api")
 const url_type = document.getElementById("url_type")
 const url_id = document.getElementById("url_id")
@@ -30,6 +32,7 @@ function onURLChange() {
   url_id.innerText = input_id.value ? "/" + input_id.value : ""
   url_xtrapath.innerText = input_xtrapath.value ? "/" + input_xtrapath.value : ""
   url_qparams.innerText = input_qparams.value ? "?" + input_qparams.value : ""
+  reflected_url.innerText = formed_url.textContent
   for (let el of document.getElementsByClassName('actionbutton')) {
     el.disabled = select_type.value ? false : true
   }

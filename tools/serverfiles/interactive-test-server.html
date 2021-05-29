@@ -106,13 +106,14 @@ Distributed under the MIT License (see https://opensource.org/licenses/MIT).
                   disabled>GET</button>
               </div>
               <div class="col-10 ignore-screen">
-                <code>https://<span id="url_api"></span>/<span id="url_type"></span><span id="url_id"></span><span id="url_xtrapath"></span><span id="url_qparams"></span></code>
+                <code id="formed_url" >https://<span id="url_api"></span>/<span id="url_type"></span><span id="url_id"></span><span id="url_xtrapath"></span><span id="url_qparams"></span></code>
               </div>
             </div>
           </form>
         </details>
         <details open id="results_container">
           <summary>Response</summary>
+          <code id="reflected_url"></code>
           <pre id="results" class="frame p-2" style="height: 30rem;">
           </pre>
         </details>

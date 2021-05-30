@@ -17,7 +17,7 @@ def ZohoObjectFactory(name,
     * A list of objects is under the JSON key `pluralizedResponseKey` -or- `responseKey` pluralized -or- `name` pluralized
     * A single object of objects is under the JSON key `responseKey` -or- `name`
     * The object ID is under the JSON key `idKey` -or- `name` _id
-    * The object Number is under the JSON key `name` _number -or- `numberKey`
+    * The object Number is under the JSON key `numberKey` -or- `name` _number
 
     :param name: object-class name; the basis of the API URL path unless overridden.
     :param urlPath: sets th API URL path

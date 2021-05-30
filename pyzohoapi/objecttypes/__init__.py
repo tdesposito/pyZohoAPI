@@ -5,7 +5,7 @@ from ..core import ZohoObjectBase
 from .mixins import *
 
 def ZohoObjectFactory(name,
-    urlPath=None, responseKey=None,
+    urlPath=None, responseKey=None, pluralResponseKey=None,
     idKey=None, numberKey=None, raw=False,
     mixins=[]):
     """ Factory function to create a Zoho Object type
@@ -14,16 +14,17 @@ def ZohoObjectFactory(name,
     Zoho API objects are accessed and parsed.
 
     * The URL used will be https:/{api-root}/{pluralized `name` -or- `urlPath`}
-    * A list of objects is under the JSON key pluralized `name` -or- pluralized `responseKey`
-    * A single object of objects is under the JSON key `name` -or- `responseKey`
-    * The object ID is under the JSON key `name` _id -or- `idKey`
+    * A list of objects is under the JSON key `pluralizedResponseKey` -or- `responseKey` pluralized -or- `name` pluralized
+    * A single object of objects is under the JSON key `responseKey` -or- `name`
+    * The object ID is under the JSON key `idKey` -or- `name` _id
     * The object Number is under the JSON key `name` _number -or- `numberKey`
 
     :param name: object-class name; the basis of the API URL path unless overridden.
-    :param urlPath: overrides th API URL path
-    :param responseKey: overrides how the singular/plural response keys are formed.
-    :param idKey: overrides the id field key.
-    :param numberKey: overrides the number field key.
+    :param urlPath: sets th API URL path
+    :param responseKey: sets the singular (and maybe plural) response key(s).
+    :param pluralResponseKey: sets the plural response key.
+    :param idKey: sets the id field key.
+    :param numberKey: sets the number field key.
     :param raw: handle the response body as raw data rather than json for non-list responses
     :param mixins: list of object-type mixins. Defaults to [].
     :return: ZohoObject sub-class
@@ -32,7 +33,7 @@ def ZohoObjectFactory(name,
         '__name__': name,
         '_type': urlPath if urlPath else f"{name.lower()}s",
         '_singular': responseKey if responseKey else name.lower(),
-        '_plural': f"{responseKey}s" if responseKey else f"{name.lower()}s",
+        '_plural': pluralResponseKey if pluralResponseKey else f"{responseKey}s" if responseKey else f"{name.lower()}s",
         '_id_field': idKey if idKey else f"{name.lower()}_id",
         '_number_field': numberKey if numberKey else f"{name.lower()}_number",
         '_is_raw': raw,

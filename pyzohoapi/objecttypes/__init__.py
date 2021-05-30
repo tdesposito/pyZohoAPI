@@ -87,3 +87,5 @@ TransferOrder = ZohoObjectFactory("TransferOrder",
     responseKey="transfer_order",
     idKey="transfer_order_id", numberKey="transfer_order_number")
 User = ZohoObjectFactory("User", mixins=[HasActivate, HasCustomFields])
+Warehouse = ZohoObjectFactory("Warehouse", urlPath="settings/warehouses",
+    mixins=[HasActivate])

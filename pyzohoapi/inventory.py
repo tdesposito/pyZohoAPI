@@ -37,3 +37,4 @@ class ZohoInventory(ZohoAPIBase):
     def TaxGroup(self, *args, **kwargs): return objecttypes.TaxGroup(self, *args, **kwargs)
     def TransferOrder(self, *args, **kwargs): return objecttypes.TransferOrder(self, *args, **kwargs)
     def User(self, *args, **kwargs): return objecttypes.User(self, *args, **kwargs)
+    def Warehouse(self, *args, **kwargs): return objecttypes.Warehouse(self, *args, **kwargs)

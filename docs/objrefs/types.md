@@ -228,6 +228,18 @@ Books, Inventory
 * [SetCustomField()](methods.md#setcustomfield)
 ```
 
+### Warehouse
+```{admonition} Available In
+Inventory
+```
+```{warning}
+Warehouse does not support Get-By-ID semantics. Always use `.Iter(raw=True)`
+when walking the list of warehouses.
+
+This also means **ANY** operation which returns or acts on an existing warehouse
+is not currently supported.
+```
+
 ## By Product
 
 ### Books
@@ -273,7 +285,7 @@ Books support is still under development.
 * [TransferOrder](#transferorder)
 * [User](#user)
 * VendorCredit (TODO)
-* Warehouse (TODO)
+* [Warehouse](#warehouse)
 
 ### Invoice
 ```{include} ../snippets/todo-future-release.markdown

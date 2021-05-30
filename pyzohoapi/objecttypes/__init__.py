@@ -61,6 +61,9 @@ ItemGroup = ZohoObjectFactory("ItemGroup", idKey="group_id",
     responseKey="group", mixins=[HasActivate])
 Organization = ZohoObjectFactory("Organization")
 Package = ZohoObjectFactory("Package", mixins=[HasCustomFields])
+PriceList = ZohoObjectFactory("PriceList", urlPath="pricebooks",
+    responseKey="pricebook", idKey="pricebook_id",
+    mixins=[HasActivate])
 PurchaseOrder = ZohoObjectFactory("PurchaseOrder", mixins=[HasCustomFields])
 SalesOrder = ZohoObjectFactory("SalesOrder",
     mixins=[HasConfirm, HasCustomFields, HasVoid])

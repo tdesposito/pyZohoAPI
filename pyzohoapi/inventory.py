@@ -23,6 +23,7 @@ class ZohoInventory(ZohoAPIBase):
     def ItemGroup(self, *args, **kwargs): return objecttypes.ItemGroup(self, *args, **kwargs)
     def Organization(self, *args, **kwargs): return objecttypes.Organization(self, *args, **kwargs)
     def Package(self, *args, **kwargs): return objecttypes.Package(self, *args, **kwargs)
+    def PriceList(self, *args, **kwargs): return objecttypes.PriceList(self, *args, **kwargs)
     def PurchaseOrder(self, *args, **kwargs): return objecttypes.PurchaseOrder(self, *args, **kwargs)
     def SalesOrder(self, *args, **kwargs): return objecttypes.SalesOrder(self, *args, **kwargs)
     def SalesPerson(self, *args, **kwargs): return objecttypes.SalesPerson(self, *args, **kwargs)

@@ -3,7 +3,7 @@
 ```{include} /snippets/seealso-zoho-api.markdown
 ```
 ## Alphabetic
-This is an alphabetic of all the Zoho Object types we support, and the APIs
+This is an alphabetic list of all the Zoho Object types we support, and the APIs
 which include them.
 
 We note which [additional methods](/objrefs/methods.md) each object type
@@ -137,6 +137,11 @@ Books, Inventory
 Inventory
 ```
 
+### PriceList
+```{admonition} Available In
+Inventory
+```
+
 ### PurchaseOrder
 ```{admonition} Available In
 Books, Inventory
@@ -218,7 +223,7 @@ Books support is still under development.
 * [ItemGroup](#itemgroup)
 * [Organization](#organization)
 * [Package](#package)
-* PriceList
+* [PriceList](#pricelist)
 * [PurchaseOrder](#purchaseorder)
 * PurchaseReceive
 * RetainerInvoice

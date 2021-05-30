@@ -29,6 +29,7 @@ class ZohoInventory(ZohoAPIBase):
     def RetainerInvoice(self, *args, **kwargs): return objecttypes.RetainerInvoice(self, *args, **kwargs)
     def SalesOrder(self, *args, **kwargs): return objecttypes.SalesOrder(self, *args, **kwargs)
     def SalesPerson(self, *args, **kwargs): return objecttypes.SalesPerson(self, *args, **kwargs)
+    def SalesReturn(self, *args, **kwargs): return objecttypes.SalesReturn(self, *args, **kwargs)
     def ShipmentOrder(self, *args, **kwargs): return objecttypes.ShipmentOrder(self, *args, **kwargs)
     def TransferOrder(self, *args, **kwargs): return objecttypes.TransferOrder(self, *args, **kwargs)
     def User(self, *args, **kwargs): return objecttypes.User(self, *args, **kwargs)

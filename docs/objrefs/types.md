@@ -147,14 +147,14 @@ Inventory
 Books, Inventory
 ```
 
-### RetainerInvoice
-```{admonition} Available In
-Books, Inventory
-```
-
 ### PurchaseReceive
 ```{admonition} Available In
 Inventory
+```
+
+### RetainerInvoice
+```{admonition} Available In
+Books, Inventory
 ```
 
 ### SalesOrder
@@ -178,6 +178,11 @@ Books, Inventory
 :class: note
 You can only get the list of all Sales Persons from the API. No other operations
 work.
+```
+
+### SalesReturn
+```{admonition} Available In
+Inventory
 ```
 
 ### ShipmentOrder
@@ -223,7 +228,7 @@ Books support is still under development.
 * [Bundle](#bundle)
 * [CompositeItem](#compositeitem)
 * [Contact](#contact)
-* ContactPerson
+* ContactPerson (TODO)
 * [CustomerPayment](#customerpayment)
 * [Currency](#currency)
 * [Document](#document)
@@ -239,13 +244,13 @@ Books support is still under development.
 * [RetainerInvoice](#retainerinvoice)
 * [SalesOrder](#salesorder)
 * [SalesPerson](#salesperson)
-* SalesReturn
+* [SalesReturn](#salesreturn)
 * [ShipmentOrder](#shipmentorder)
-* Tax
+* Tax (TODO)
 * [TransferOrder](#transferorder)
 * [User](#user)
-* VendorCredit
-* Warehouse
+* VendorCredit (TODO)
+* Warehouse (TODO)
 
 ### Invoice
 ```{include} ../snippets/todo-future-release.markdown

@@ -70,6 +70,7 @@ RetainerInvoice = ZohoObjectFactory("RetainerInvoice", mixins=[HasDraft, HasVoid
 SalesOrder = ZohoObjectFactory("SalesOrder",
     mixins=[HasConfirm, HasCustomFields, HasVoid])
 SalesPerson = ZohoObjectFactory("SalesPerson")
+SalesReturn = ZohoObjectFactory("SalesReturn")
 ShipmentOrder = ZohoObjectFactory("ShipmentOrder",
     responseKey="shipment_order", idKey="shipment_id",
     numberKey="shipment_number", mixins=[HasCustomFields])

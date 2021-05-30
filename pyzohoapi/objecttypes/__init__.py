@@ -47,6 +47,8 @@ CompositeItem = ZohoObjectFactory("CompositeItem",
     mixins=[HasActivate, HasBundle, HasCustomFields])
 Contact = ZohoObjectFactory("Contact", mixins=[HasActivate, HasAddresses])
 CreditNote = ZohoObjectFactory("CreditNode", mixins=[HasCustomFields])
+Currency = ZohoObjectFactory("Currency", urlPath="settings/currencies",
+    pluralResponseKey="currencies")
 CustomerPayment = ZohoObjectFactory("CustomerPayment",
     idKey="payment_id", numberKey="payment_number", mixins=[HasCustomFields])
 Document = ZohoObjectFactory("Document", raw=True)

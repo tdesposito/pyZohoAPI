@@ -73,6 +73,11 @@ Inventory
 Inventory
 ```
 
+### Currency
+```{admonition} Available In
+Inventory
+```
+
 ### Document
 ```{admonition} Available In
 Books, Inventory
@@ -170,7 +175,6 @@ Books, Inventory
 Inventory
 ```
 
-
 ### User
 ```{admonition} Available In
 Books, Inventory
@@ -204,7 +208,9 @@ Books support is still under development.
 * [Bundle](#bundle)
 * [CompositeItem](#compositeitem)
 * [Contact](#contact)
+* ContactPerson
 * [CustomerPayment](#customerpayment)
+* [Currency](#currency)
 * [Document](#document)
 * [Invoice](#invoice)
 * [Item](#item)
@@ -212,12 +218,19 @@ Books support is still under development.
 * [ItemGroup](#itemgroup)
 * [Organization](#organization)
 * [Package](#package)
+* PriceList
 * [PurchaseOrder](#purchaseorder)
+* PurchaseReceive
+* RetainerInvoice
 * [SalesOrder](#salesorder)
 * [SalesPerson](#salesperson)
+* SalesReturn
 * [ShipmentOrder](#shipmentorder)
+* Tax
 * [TransferOrder](#transferorder)
 * [User](#user)
+* VendorCredit
+* Warehouse
 
 ### Invoice
 ```{include} ../snippets/todo-future-release.markdown
@@ -226,14 +239,3 @@ Books support is still under development.
 ### Subscriptions
 ```{include} ../snippets/todo-future-release.markdown
 ```
-
-## Next To Add
-* ContactPerson
-* RetainerInvoice
-* SalesReturn
-* PurchaseReceive
-* VendorCredit
-* Warehouse
-* PriceList
-* Tax
-* Currency

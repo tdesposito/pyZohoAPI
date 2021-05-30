@@ -147,6 +147,11 @@ Inventory
 Books, Inventory
 ```
 
+### PurchaseReceive
+```{admonition} Available In
+Inventory
+```
+
 ### SalesOrder
 ```{admonition} Available In
 Books, Inventory
@@ -225,7 +230,7 @@ Books support is still under development.
 * [Package](#package)
 * [PriceList](#pricelist)
 * [PurchaseOrder](#purchaseorder)
-* PurchaseReceive
+* [PurchaseReceive](#purchasereceive)
 * RetainerInvoice
 * [SalesOrder](#salesorder)
 * [SalesPerson](#salesperson)

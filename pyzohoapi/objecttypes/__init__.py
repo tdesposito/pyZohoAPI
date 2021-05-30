@@ -65,6 +65,7 @@ PriceList = ZohoObjectFactory("PriceList", urlPath="pricebooks",
     responseKey="pricebook", idKey="pricebook_id",
     mixins=[HasActivate])
 PurchaseOrder = ZohoObjectFactory("PurchaseOrder", mixins=[HasCustomFields])
+PurchaseReceive = ZohoObjectFactory("PurchaseReceive", mixins=[HasCustomFields])
 SalesOrder = ZohoObjectFactory("SalesOrder",
     mixins=[HasConfirm, HasCustomFields, HasVoid])
 SalesPerson = ZohoObjectFactory("SalesPerson")

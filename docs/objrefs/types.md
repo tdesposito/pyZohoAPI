@@ -147,6 +147,11 @@ Inventory
 Books, Inventory
 ```
 
+### RetainerInvoice
+```{admonition} Available In
+Books, Inventory
+```
+
 ### PurchaseReceive
 ```{admonition} Available In
 Inventory
@@ -231,7 +236,7 @@ Books support is still under development.
 * [PriceList](#pricelist)
 * [PurchaseOrder](#purchaseorder)
 * [PurchaseReceive](#purchasereceive)
-* RetainerInvoice
+* [RetainerInvoice](#retainerinvoice)
 * [SalesOrder](#salesorder)
 * [SalesPerson](#salesperson)
 * SalesReturn

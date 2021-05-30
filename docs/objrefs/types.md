@@ -190,6 +190,26 @@ Inventory
 Books, Inventory
 ```
 
+### Tax
+```{admonition} Available In
+Inventory
+```
+
+### TaxAuthority
+```{admonition} Available In
+Inventory (US Edition Only)
+```
+
+### TaxExemption
+```{admonition} Available In
+Inventory (US Edition Only)
+```
+
+### TaxGroup
+```{admonition} Available In
+Inventory (Non-US Edition Only)
+```
+
 ### TransferOrder
 ```{admonition} Available In
 Inventory
@@ -246,7 +266,10 @@ Books support is still under development.
 * [SalesPerson](#salesperson)
 * [SalesReturn](#salesreturn)
 * [ShipmentOrder](#shipmentorder)
-* Tax (TODO)
+* [Tax](#tax)
+* [TaxAuthority](#taxauthority)
+* [TaxExemption](#taxexemption)
+* [TaxGroup](#taxgroup)
 * [TransferOrder](#transferorder)
 * [User](#user)
 * VendorCredit (TODO)

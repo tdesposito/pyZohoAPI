@@ -74,6 +74,15 @@ SalesReturn = ZohoObjectFactory("SalesReturn")
 ShipmentOrder = ZohoObjectFactory("ShipmentOrder",
     responseKey="shipment_order", idKey="shipment_id",
     numberKey="shipment_number", mixins=[HasCustomFields])
+Tax = ZohoObjectFactory("Tax", urlPath="settings/taxes",
+    pluralResponseKey="taxes")
+TaxAuthority = ZohoObjectFactory("Tax", urlPath="settings/taxauthorities",
+    responseKey="tax_authority", pluralResponseKey="tax_authorities",
+    idKey="tax_authority_id")
+TaxExemption = ZohoObjectFactory("Tax", urlPath="settings/taxexemptions",
+    responseKey="tax_exemption", idKey="tax_exemption_id")
+TaxGroup = ZohoObjectFactory("Tax", urlPath="settings/taxgroups",
+    responseKey="tax_group", idKey="tax_group_id")
 TransferOrder = ZohoObjectFactory("TransferOrder",
     responseKey="transfer_order",
     idKey="transfer_order_id", numberKey="transfer_order_number")

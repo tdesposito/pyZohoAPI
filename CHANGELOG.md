@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.7.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.7.0) - 2021-05-30
+
+<small>[Compare with v0.6.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.6.0...v0.7.0)</small>
+
+### Added
+- Add: warehouse type ([18c3530](https://github.com/tdesposito/pyZohoAPI/commit/18c3530e6d48fcdc11b761fb22506c51e59f449a) by Todd Esposito).
+- Add: tax (and related) types ([4705a96](https://github.com/tdesposito/pyZohoAPI/commit/4705a96996494c9ebb64d10d458b32150b38e6ef) by Todd Esposito).
+- Add: salesreturn type -- untested/incomplete ([d69da72](https://github.com/tdesposito/pyZohoAPI/commit/d69da722f8093583a0374cbd955d439c5df9bf0a) by Todd Esposito).
+- Add: retainerinvoice type -- untested/incomplete ([a98f3d7](https://github.com/tdesposito/pyZohoAPI/commit/a98f3d76fb5bee189e95be5fdc809d47f2a401f3) by Todd Esposito).
+- Add: purchasereceive type ([fbb6038](https://github.com/tdesposito/pyZohoAPI/commit/fbb603832c0f5783a547c90da3e91d6b8823530e) by Todd Esposito).
+- Add: pricelist type ([4aa6cf1](https://github.com/tdesposito/pyZohoAPI/commit/4aa6cf1269f10e4e5e41a12086c40d988df42a24) by Todd Esposito).
+- Add: currency type ([23c2a05](https://github.com/tdesposito/pyZohoAPI/commit/23c2a0581699412c29c2fd476024e581bc0c9980) by Todd Esposito).
+- Add: transferorder type ([d38199e](https://github.com/tdesposito/pyZohoAPI/commit/d38199e51c5ae135f9d209f18928a4fe815bd53a) by Todd Esposito).
+- Add: itemadjustment type ([2851bb0](https://github.com/tdesposito/pyZohoAPI/commit/2851bb0968424086dae57f63411f6cabfe244441) by Todd Esposito).
+
+### Fixed
+- Fix: allow non-computed plural response keys ([ba11b8c](https://github.com/tdesposito/pyZohoAPI/commit/ba11b8cc67c208085077015d6db84d076820e616) by Todd Esposito).
+- Fix: include request url in response panel in the test-server ([9db661a](https://github.com/tdesposito/pyZohoAPI/commit/9db661a124eee85ee68f4786f239c03ab6f2fd81) by Todd Esposito).
+- Fix: clarify and make object factory params more flexible ([f3d3093](https://github.com/tdesposito/pyZohoAPI/commit/f3d3093237f3143768af7785575e08c156eae908) by Todd Esposito).
+
+
 ## [v0.6.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.6.0) - 2021-05-26
 
 <small>[Compare with v0.5.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.5.0...v0.6.0)</small>

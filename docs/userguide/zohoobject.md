@@ -96,8 +96,7 @@ know your search will only return one result.
 For object types which includes references to other object types,
 `GetRelated()` will return that object:
 ```{code-block} python
->>> so = inventory.SalesOrder(id)
->>> contact = so.GetRelated(inventory.Contact, 'customer_id')
+>>> contact = inventory.SalesOrder(id).GetRelated(inventory.Contact, 'customer_id')
 >>> contact.company_name
 Acme International
 ```

@@ -389,9 +389,10 @@ class ZohoObjectBase:
         if self._id and self._data:
             updated = diff(self._orig, self._data.to_python())
             if updated:
-                for k in self._req_fields:
-                    if self._data.get(k):
-                        updated[k] = self._data[k]
+                # Maybe we don't need this; testing must ensue
+                # for k in self._req_fields:
+                #     if self._data.get(k):
+                #         updated[k] = self._data[k]
                 data = self._api.put(self._url_fragment(), updated, "")
                 self._reload(data)
             return self

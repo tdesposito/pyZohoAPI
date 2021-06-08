@@ -26,6 +26,12 @@ const apis = {
   'inventory': 'inventory.zoho.com/api/v1',
 }
 
+param_container.addEventListener("click", () => {
+  if (! param_container.open) {
+    results_container.open = false
+  }
+})
+
 function onURLChange() {
   url_api.innerText = apis[select_api.value]
   url_type.innerText = select_type.value

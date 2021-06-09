@@ -81,6 +81,10 @@ new `ID` in that case.
 Calling `Delete()` on a List-of or New object raises an exception.
 
 ### `First()`
+`First()` returns the first object found by a search; if called on a new or
+mapped object, it returns *self*, so it's safe to use anywhere. Useful if you
+know your search will only return one result.
+
 ```{code-block} python
 >>> user = inventory.User(email="test@example.com").First()
 >>> user.IsLoaded:
@@ -88,9 +92,17 @@ True
 >>> user.email
 'test@example.com'
 ```
-`First()` returns the first object found by a search; if called on a new or
-mapped object, it returns *self*, so it's safe to use anywhere. Useful if you
-know your search will only return one result.
+**_Updated in v0.7.2_**: Keyword arguments provided to `First()` will be used as
+a filter, in the manner of `Iter()`, to determine which object counts as
+"first." The filtered attributes **MUST** exist in the List-of object
+attributes. For example:
+```{code-block} python
+>>> user = inventory.User().First(status="inactive")
+>>> user.IsLoaded:
+True
+>>> user.email
+'inactiveuser@example.com'
+```
 
 ### `GetRelated()`
 For object types which includes references to other object types,

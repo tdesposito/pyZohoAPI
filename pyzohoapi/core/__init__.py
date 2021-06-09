@@ -322,8 +322,10 @@ class ZohoObjectBase:
             return self
         raise ZohoInvalidOpError("Delete", self)
 
-    def First(self):
+    def First(self, **kwargs):
         """ Get the first ZohoObject from the list.
+
+        If kwargs are provided, they are used to filter what counts as "first."
 
         :return: a ZohoObject
         """
@@ -331,7 +333,13 @@ class ZohoObjectBase:
             # We were a "new" object, but need to become a list-of
             self._load()
         if isinstance(self._data, DottedList) and len(self._data):
-            return self.__class__(self._api, self._data[0][self._id_field])
+            if kwargs:
+                rval = None
+                for _ in self.Iter(raw=True, **kwargs): rval = _; break;
+                if rval:
+                    return self.__class__(self._api, rval[self._id_field])
+            else:
+                return self.__class__(self._api, self._data[0][self._id_field])
         return self.__class__(self._api)
 
     def GetRelated(self, targetType, key):

@@ -10,7 +10,31 @@ if sys.flags.interactive:
     import private
     td = private.testdata
 
-    def dump(o, key=None):
+    def testshell():
+        """Test shell loaded. Here's what you have:
+
+        Modules:
+            json;
+
+        Functions:
+            pprint();
+            show(object, key=None) -> shows a Zoho Object (or optional attribute);
+
+        Objects:
+            private.testdata -> dict, aliased to td;
+            books -> ZohoBooks object : configured via testdata;
+            inv -> ZohoInventory object : configured via testdata;
+
+        Type: help(testshell) to get this help again.
+
+        Enjoy your testing!
+        """
+        ...
+
+    def show(o, key=None):
+        """ Shows all of a Zoho object's attributes, or the attribute specified.
+        You can use dotted notation to drill down into attributes.
+        """
         if key:
             pprint(o._data.to_python().get(key), indent=2)
         else:
@@ -25,17 +49,7 @@ if sys.flags.interactive:
     books = pyzohoapi.books.ZohoBooks(td['orgid'], td['region'], **td['api'])
     inv = pyzohoapi.inventory.ZohoInventory(td['orgid'], td['region'], **td['api'])
 
-    print("\nTest shell loaded. Here's what you have:")
-    print("\nModules:\n\tjson;")
-    print("\nFunctions:")
-    print("\tpprint();")
-    print("\tdump(object, key=None) -> dumps a Zoho Object (or optional attribute);")
-    print("\nObjects:")
-    print("\tprivate.testdata -> dict, aliased to td;")
-    print("\tbooks -> ZohoBooks object : configured via testdata;")
-    print("\tinv -> ZohoInventory object : configured via testdata;")
-    print("Enjoy your testing!\n")
-
+    help(testshell)
 else:
     print("\nThis script bootstraps an interactive test enviroment, but only this way:")
     print(f"\t> python -i {__file__}")

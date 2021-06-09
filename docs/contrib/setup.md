@@ -131,6 +131,8 @@ the JSON response data.
 ```{code-block} console
 $ poetry run python tools/interactive-test-server.py
 ```
+You can also add `--port ` and a port number to the above to override the
+default server port.
 
 ### Interactive Shell
 The Interactive Shell launches a Python REPL with pyzohoapi pre-loaded and
@@ -138,24 +140,29 @@ confgured (see the section on `private`, above).
 ```{code-block} console
 $ poetry run python -i tools/test-shell.py
 ```
-_**NOTE:** Don't forget the `-i` in the command above to get your interactive
-shell._
+```{note}
+Don't forget the `-i` in the command above to get your interactive shell.
+```
 
 ```{code-block} console
-Test shell loaded. Here's what you have:
+testshell()
+    Test shell loaded. Here's what you have:
 
-Modules:
+    Modules:
         json;
 
-Functions:
+    Functions:
         pprint();
-        dump(object, key=None) -> dumps a Zoho Object (or optional attribute);
+        show(object, key=None) -> shows a Zoho Object (or optional attribute);
 
-Objects:
+    Objects:
         private.testdata -> dict, aliased to td;
         books -> ZohoBooks object : configured via testdata;
         inv -> ZohoInventory object : configured via testdata;
-Enjoy your testing!
+
+    Type: help(testshell) to get this help again.
+
+    Enjoy your testing!
 
 >>> inv.Item('9876543210987654321')
 Item #9876543210987654321

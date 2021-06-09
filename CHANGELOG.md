@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.7.2](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.7.2) - 2021-06-09
+
+<small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.7.2)</small>
+
+### Fixed
+- Fix: allow first() to filter ([e69451a](https://github.com/tdesposito/pyZohoAPI/commit/e69451aa7636a66b25649d093b086c50b10a775b) by Todd Esposito).
+
+
 ## [v0.7.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.7.1) - 2021-06-08
 
 <small>[Compare with v0.7.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.0...v0.7.1)</small>

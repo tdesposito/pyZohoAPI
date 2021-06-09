@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyZohoAPI"
-version = "0.7.1"
+version = "0.7.2"
 description = "Pythonic access to Zoho APIs in the Finance Plus suite."
 authors = ["Todd Esposito <todd@toddesposito.com>"]
 license = "MIT"

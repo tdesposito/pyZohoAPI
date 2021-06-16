@@ -11,6 +11,8 @@ class ZohoInventory(ZohoAPIBase):
         return f"https://inventory.zoho.{self._regionmap[region]}/api/v1"
 
     def Account(self, *args, **kwargs): return objecttypes.Account(self, *args, **kwargs)
+    def Bill(self, *args, **kwargs): return objecttypes.Bill(self, *args, **kwargs)
+    def Brand(self, *args, **kwargs): return objecttypes.Brand(self, *args, **kwargs)
     def Bundle(self, *args, **kwargs): return objecttypes.Bundle(self, *args, **kwargs)
     def CompositeItem(self, *args, **kwargs): return objecttypes.CompositeItem(self, *args, **kwargs)
     def Contact(self, *args, **kwargs): return objecttypes.Contact(self, *args, **kwargs)

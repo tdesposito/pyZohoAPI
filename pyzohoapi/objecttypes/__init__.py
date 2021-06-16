@@ -41,6 +41,7 @@ def ZohoObjectFactory(name,
 
 Account = ZohoObjectFactory("ChartOfAccount", idKey="account_id")
 Bill = ZohoObjectFactory("Bill", mixins=[HasCustomFields])
+Brand = ZohoObjectFactory("Brand")
 Bundle = ZohoObjectFactory("Bundle")
 CompositeItem = ZohoObjectFactory("CompositeItem",
     responseKey="composite_item", idKey="composite_item_id",

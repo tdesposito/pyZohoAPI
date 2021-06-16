@@ -25,6 +25,11 @@ Inventory
 * [SetCustomField()](methods.md#setcustomfield)
 ```
 
+### Brand
+```{admonition} Available In
+Inventory
+```
+
 ### Bundle
 ```{admonition} Available In
 Inventory

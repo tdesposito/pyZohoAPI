@@ -69,6 +69,8 @@ Inventory
 
 * [Activate()](methods.md#activate)
 * [Deactivate()](methods.md#deactivate)
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
 * [UpdateBilling()](methods.md#updatebilling)
 * [UpdateShipping()](methods.md#updateshipping)
 ```

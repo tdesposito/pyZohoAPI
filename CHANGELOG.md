@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.7.2](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.7.2) - 2021-06-09
+## [v0.8.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.8.0) - 2021-06-24
 
-<small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.7.2)</small>
+<small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.8.0)</small>
+
+### Added
+- Add custom fields to contacts ([d0f47ed](https://github.com/tdesposito/pyZohoAPI/commit/d0f47ed1daae94f9eb5149a71b47180089a92131) by Todd Esposito).
+- Add brand type ([1d085a4](https://github.com/tdesposito/pyZohoAPI/commit/1d085a45ef274faca6a08d82e770f662ed54ae3b) by Todd Esposito).
 
 ### Fixed
 - Fix: allow first() to filter ([e69451a](https://github.com/tdesposito/pyZohoAPI/commit/e69451aa7636a66b25649d093b086c50b10a775b) by Todd Esposito).

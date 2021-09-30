@@ -2,6 +2,11 @@
 This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
 Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 */
+main {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+}
+
 i {
   font-size: .7rem;
   vertical-align: text-top;
@@ -9,6 +14,12 @@ i {
 
 pre {
   overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .hidden {

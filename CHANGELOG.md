@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.9.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.9.0) - 2021-09-30
+
+<small>[Compare with v0.8.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.8.0...v0.9.0)</small>
+
+### Added
+- Add logging to core
+- add HasDeliver() to ShipmentOrder
+
 ## [v0.8.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.8.0) - 2021-06-24
 
 <small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.8.0)</small>
@@ -154,5 +162,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Remove dotted - obsolete ([bfa2d5b](https://github.com/tdesposito/pyZohoAPI/commit/bfa2d5b7ef89c7da48d1f453017e2ee6825fe544) by Todd Esposito).
-
-

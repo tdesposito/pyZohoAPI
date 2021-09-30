@@ -1,4 +1,4 @@
-# pyZohoAPI (v0.8.0)
+# pyZohoAPI (v0.9.0)
  **pyZohoAPI** provides Pythonic access to Zoho APIs in the Finance Plus suite:
  * **Books**
  * *Checkout*<sup>*</sup>

@@ -56,7 +56,7 @@ True
 ```
 <!-- end basic-usage -->
 
-See the [full documetation on ReadTheDocs](https://pyzohoapi.readthedocs.io/en/latest/)
+See the [full documentation on ReadTheDocs](https://pyzohoapi.readthedocs.io/en/latest/)
 
 ## Contributing
 Pull Requests gladly considered!

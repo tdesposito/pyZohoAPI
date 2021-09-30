@@ -2,6 +2,7 @@
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
 import datetime
+import logging
 from time import sleep
 
 import requests
@@ -9,6 +10,8 @@ import requests
 from .collection import DottedDict, DottedList
 from .utils import diff
 from ..exceptions import *
+
+logging.getLogger('pyzohoapi').addHandler(logging.NullHandler())
 
 class ZohoAPIBase:
     _regionmap = {
@@ -57,6 +60,7 @@ class ZohoAPIBase:
             'retry_backoff_seconds': 0.5,
         }
         self.update_tokens(apiArgs)
+        self._logger = logging.getLogger('pyzohoapi')
 
     def auth_header(self):
         """ Returns the authorization header, refreshing the access_token as needed.
@@ -68,6 +72,7 @@ class ZohoAPIBase:
         if self._api_keys.get('access_token') and self._api_keys['AccessExpiresAt'] > datetime.datetime.now().timestamp():
             return {'Authorization': f"Zoho-oauthtoken {self._api_keys['access_token']}"}
         if self._api_keys.get('refresh_token'):
+            self.log("requesting new access token")
             rsp = requests.post(f"{self._oauth}/token", params={
                 'refresh_token': self._api_keys['refresh_token'],
                 'client_id': self._api_keys['client_id'],
@@ -84,10 +89,12 @@ class ZohoAPIBase:
     def do_request(self, requestFunc, url, body=None, files=None):
         if self._api_keys['min_calls_remaining'] >= int(self._ratelimit['remaining']):
             if self._ratelimit['ResetAt'] > datetime.datetime.now():
+                self.log("API call limit exceeded")
                 raise ZohoAPICallsExceeded()
 
         now = datetime.datetime.now().timestamp()
         if now < self._ratelimit['NextCall']:
+            self.log("pausing for internal API rate limit")
             sleep(self._ratelimit['NextCall'] - now)
 
         retries = self._api_keys['max_retries']
@@ -103,6 +110,7 @@ class ZohoAPIBase:
                 retries -= 1
                 sleeptime = int(rsp.headers.get('retry-after', self._api_keys['retry_backoff_seconds']))
                 if sleeptime <= self._api_keys['max_retry_after']:
+                    self.log("pausing before retry")
                     sleep(sleeptime)
                 else:
                     raise ZohoAPIThrottled()
@@ -136,6 +144,7 @@ class ZohoAPIBase:
                         retries -= 1
                         sleeptime = int(rsp.headers.get('retry-after', self._api_keys['retry_backoff_seconds']))
                         if sleeptime <= self._api_keys['max_retry_after']:
+                            self.log("pausing before retry")
                             sleep(sleeptime)
                         else:
                             raise ZohoAPIThrottled()
@@ -144,11 +153,13 @@ class ZohoAPIBase:
 
     def delete(self, urlFragment):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}"
+        self.log(f"DELETE {url}")
         rsp = self.do_request(requests.delete, url)
         return rsp.ok
 
     def get(self, urlFragment, queryString):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        self.log(f"GET {url}")
         rsp = self.do_request(requests.get, url)
         if rsp.headers['content-type'].startswith("application/json"):
             data = rsp.json()
@@ -165,8 +176,12 @@ class ZohoAPIBase:
         # It's only here in the base class for testing
         return False
 
+    def log(self, message, level=logging.DEBUG):
+        self._logger.log(level, f"{self.__class__.__name__} (Org# {self._org}): {message}")
+
     def post(self, urlFragment, data=None, queryString="", files=None):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        self.log(f"POST {url}")
         rsp = self.do_request(requests.post, url, data, files)
         if rsp.headers['content-type'].startswith("application/json"):
             data = rsp.json()
@@ -180,6 +195,7 @@ class ZohoAPIBase:
 
     def put(self, urlFragment, data, queryString):
         url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        self.log(f"PUT {url}")
         rsp = self.do_request(requests.put, url, data)
         if rsp.headers['content-type'].startswith("application/json"):
             data = rsp.json()

@@ -194,7 +194,14 @@ Inventory
 
 ### ShipmentOrder
 ```{admonition} Available In
-Books, Inventory
+Inventory
+```
+```{admonition} Additional methods
+:class: tip
+
+* [Delivered()](methods.md#delivered)
+* [GetCustomField()](methods.md#getcustomfield)
+* [SetCustomField()](methods.md#setcustomfield)
 ```
 
 ### Tax

@@ -74,7 +74,7 @@ SalesPerson = ZohoObjectFactory("SalesPerson")
 SalesReturn = ZohoObjectFactory("SalesReturn")
 ShipmentOrder = ZohoObjectFactory("ShipmentOrder",
     responseKey="shipment_order", idKey="shipment_id",
-    numberKey="shipment_number", mixins=[HasCustomFields])
+    numberKey="shipment_number", mixins=[HasCustomFields, HasDelivered])
 Tax = ZohoObjectFactory("Tax", urlPath="settings/taxes",
     pluralResponseKey="taxes")
 TaxAuthority = ZohoObjectFactory("Tax", urlPath="settings/taxauthorities",

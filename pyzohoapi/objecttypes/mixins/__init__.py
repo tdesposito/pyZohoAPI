@@ -10,7 +10,7 @@ __all__ = [
     'HasActivate',
     'HasAddresses',
     'HasBundle',
-    'HasConfirm', 'HasDraft', 'HasVoid',
+    'HasConfirm', 'HasDraft', 'HasVoid', 'HasDelivered',
     'HasCustomFields',
     'HasImage',
 ]
@@ -70,6 +70,14 @@ class HasConfirm(_HasStatus):
         if not self._id:
             raise ZohoInvalidOpError("Confirm", self)
         return self._mark('confirmed')
+
+
+class HasDelivered(_HasStatus):
+    """Adds `Delivered()`"""
+    def Delivered(self):
+        if not self._id:
+            raise ZohoInvalidOpError("Delivered", self)
+        return self._mark('delivered')
 
 
 class HasDraft(_HasStatus):

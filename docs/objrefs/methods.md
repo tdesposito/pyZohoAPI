@@ -69,6 +69,15 @@ Deletes the image associated with an object.
 * [Item](types.md#item)
 ```
 
+### `Delivered()`
+Marks an object as "Delivered". Returns True on success. Raises `ZohoInvalidOpError`
+if called on a New or List-of object.
+```{admonition} Applies To
+:class: tip
+
+* [ShipmentOrder](types.md#shipmentorder)
+```
+
 ### `Draft()`
 Marks an object as "Draft". Returns True on success. Raises `ZohoInvalidOpError`
 if called on a New or List-of object.

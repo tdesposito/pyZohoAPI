@@ -4,19 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.9.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.9.1) - 2021-09-30
+
+<small>[Compare with v0.9.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.9.0...v0.9.1)</small>
+
+### Fixed
+- Fix shipmentorder key ([a52891f](https://github.com/tdesposito/pyZohoAPI/commit/a52891f2866a03f53e67b9056a9f2ee0310a9a63) by Todd Esposito).
+- Fix classifiers to include 3.9 ([e8449d7](https://github.com/tdesposito/pyZohoAPI/commit/e8449d760780346f8d352a7ff4949643a7848bab) by Todd Esposito).
+
+
 ## [v0.9.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.9.0) - 2021-09-30
 
-<small>[Compare with v0.8.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.8.0...v0.9.0)</small>
+<small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.9.0)</small>
 
 ### Added
-- Add logging to core
-- add HasDeliver() to ShipmentOrder
-
-## [v0.8.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.8.0) - 2021-06-24
-
-<small>[Compare with v0.7.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.7.1...v0.8.0)</small>
-
-### Added
+- Add logging to core ([3a0cb29](https://github.com/tdesposito/pyZohoAPI/commit/3a0cb2938e557c98fd3e33931b8df645fcb9359e) by Todd Esposito).
+- Add hasdeliver(), apply to shipmentorder ([4686e24](https://github.com/tdesposito/pyZohoAPI/commit/4686e245651d74991bc306812cd4eea5e8462ed7) by Todd Esposito).
 - Add custom fields to contacts ([d0f47ed](https://github.com/tdesposito/pyZohoAPI/commit/d0f47ed1daae94f9eb5149a71b47180089a92131) by Todd Esposito).
 - Add brand type ([1d085a4](https://github.com/tdesposito/pyZohoAPI/commit/1d085a45ef274faca6a08d82e770f662ed54ae3b) by Todd Esposito).
 
@@ -162,3 +165,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Remove dotted - obsolete ([bfa2d5b](https://github.com/tdesposito/pyZohoAPI/commit/bfa2d5b7ef89c7da48d1f453017e2ee6825fe544) by Todd Esposito).
+
+

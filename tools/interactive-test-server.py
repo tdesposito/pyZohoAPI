@@ -7,7 +7,7 @@ sys.path.insert(0, "..")
 import argparse
 
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-import json
+import simplejson as json
 import os
 from pprint import pprint
 import signal

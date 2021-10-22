@@ -29,6 +29,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.25.1"
+simplejson = "^3.17.5"
 
 [tool.poetry.dev-dependencies]
 furo = "^2020.12.30-beta.24"

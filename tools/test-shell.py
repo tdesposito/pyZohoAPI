@@ -1,6 +1,7 @@
 # This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
+from decimal import Decimal
 import json
 from pprint import pprint
 import sys
@@ -14,6 +15,7 @@ if sys.flags.interactive:
         """Test shell loaded. Here's what you have:
 
         Modules:
+            decimal.Decimal (as Decimal);
             json;
 
         Functions:
@@ -25,7 +27,7 @@ if sys.flags.interactive:
             books -> ZohoBooks object : configured via testdata;
             inv -> ZohoInventory object : configured via testdata;
 
-        Type: help(testshell) to get this help again.
+        Type `help(testshell)` to get this help again.
 
         Enjoy your testing!
         """

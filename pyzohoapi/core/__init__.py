@@ -6,6 +6,7 @@ import logging
 from time import sleep
 
 import requests
+import simplejson
 
 from .collection import DottedDict, DottedList
 from .utils import diff
@@ -102,7 +103,7 @@ class ZohoAPIBase:
             reqparams = {
                 'headers': self.auth_header(),
                 'files': files,
-                'json': body,
+                'data': simplejson.dumps(body) if body else None,
             }
             rsp = requestFunc(url, **reqparams)
             self._ratelimit['NextCall'] = datetime.datetime.now().timestamp() + self._api_keys['intercall_delay']
@@ -162,7 +163,7 @@ class ZohoAPIBase:
         self.log(f"GET {url}")
         rsp = self.do_request(requests.get, url)
         if rsp.headers['content-type'].startswith("application/json"):
-            data = rsp.json()
+            data = simplejson.loads(rsp.text, use_decimal=True)
             if data['code'] == 0:
                 return data
             raise ZohoException(f"zoho returned {data['code']}: {data['message']}")
@@ -184,7 +185,7 @@ class ZohoAPIBase:
         self.log(f"POST {url}")
         rsp = self.do_request(requests.post, url, data, files)
         if rsp.headers['content-type'].startswith("application/json"):
-            data = rsp.json()
+            data = simplejson.loads(rsp.text, use_decimal=True)
             if data['code'] == 0:
                 return data
             raise ZohoException(f"zoho returned {data['code']}: {data['message']}")
@@ -198,7 +199,7 @@ class ZohoAPIBase:
         self.log(f"PUT {url}")
         rsp = self.do_request(requests.put, url, data)
         if rsp.headers['content-type'].startswith("application/json"):
-            data = rsp.json()
+            data = simplejson.loads(rsp.text, use_decimal=True)
             if data['code'] == 0:
                 return data
             raise ZohoException(f"zoho returned {data['code']}: {data['message']}")
@@ -215,6 +216,7 @@ class ZohoAPIBase:
 
     def update_tokens(self, apiArgs):
         self._api_keys.update(apiArgs)
+        # we subtract a few ticks from our expiry time, to cushion against drift
         self._api_keys['AccessExpiresAt'] = datetime.datetime.now().timestamp() + int(apiArgs.get('expires_in', 0)) - 10
 
 
@@ -413,10 +415,6 @@ class ZohoObjectBase:
         if self._id and self._data:
             updated = diff(self._orig, self._data.to_python())
             if updated:
-                # Maybe we don't need this; testing must ensue
-                # for k in self._req_fields:
-                #     if self._data.get(k):
-                #         updated[k] = self._data[k]
                 data = self._api.put(self._url_fragment(), updated, "")
                 self._reload(data)
             return self

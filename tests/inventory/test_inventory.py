@@ -120,10 +120,10 @@ def test_create_customer():
                         'is_primary_contact': True,
                     }]
     c.is_taxable = True
-    c.tax_id = testdata.inventory.salesorder.newuser.tax_id
-    c.tax_name = testdata.inventory.salesorder.newuser.tax_name
-    c.payment_terms = testdata.inventory.salesorder.newuser.payment_terms
-    c.payment_terms_label = testdata.inventory.salesorder.newuser.payment_terms_label
+    c.tax_id = testdata.inventory.newuser.tax_id
+    c.tax_name = testdata.inventory.newuser.tax_name
+    c.payment_terms = testdata.inventory.newuser.payment_terms
+    c.payment_terms_label = testdata.inventory.newuser.payment_terms_label
 
     c.Create()
     assert c.ID is not None

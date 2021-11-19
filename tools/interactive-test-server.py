@@ -1,18 +1,18 @@
 # This file is part of pyZohoAPI, Copyright (C) Todd D. Esposito 2021.
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
-import sys
-sys.path.insert(0, "..")
-
 import argparse
-
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-import simplejson as json
+import logging
 import os
-from pprint import pprint
 import signal
+import sys
 import traceback
+
+import simplejson as json
 import urllib
+
+sys.path.insert(0, "..")
 
 from pyzohoapi import *
 from pyzohoapi.exceptions import ZohoException
@@ -102,6 +102,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         return self.do_GET()
 
+
 def run_server(hostName, serverPort):
     server = ThreadingHTTPServer((hostName, serverPort), RequestHandler)
     server.daemon_threads = True
@@ -128,12 +129,18 @@ def run_server(hostName, serverPort):
     except KeyboardInterrupt:
         pass
 
-    server.server_close()
+    server.server_close()s
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--port", type=int, help="TCP port to serve from")
+    parser.add_argument("--log", action='store_true', default=False, help="Display log messages from pyZohoAPI")
     args = parser.parse_args()
+
+    if args.log:
+        logger = logging.getLogger()
+        logging.basicConfig(level=logging.DEBUG)
+        logging.getLogger('urllib3.connectionpool').setLevel(logging.INFO)
 
     run_server("localhost", args.port or 8080)

@@ -131,8 +131,11 @@ the JSON response data.
 ```{code-block} console
 $ poetry run python tools/interactive-test-server.py
 ```
-You can also add `--port ` and a port number to the above to override the
-default server port.
+You can add `--port` and a port number to the above to override the
+default port (8080).
+
+If you want to see the log entries the library is making, add `--log` to the
+above.
 
 ### Interactive Shell
 The Interactive Shell launches a Python REPL with pyzohoapi pre-loaded and

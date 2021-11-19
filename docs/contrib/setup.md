@@ -149,7 +149,8 @@ testshell()
     Test shell loaded. Here's what you have:
 
     Modules:
-        json;
+        decimal.Decimal (as Decimal);
+        json (simplejson, aliased to json);
 
     Functions:
         pprint();

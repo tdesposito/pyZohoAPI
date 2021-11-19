@@ -2,7 +2,7 @@
 # Distributed under the MIT License (see https://opensource.org/licenses/MIT).
 
 from decimal import Decimal
-import json
+import simplejson as json
 from pprint import pprint
 import sys
 
@@ -16,7 +16,7 @@ if sys.flags.interactive:
 
         Modules:
             decimal.Decimal (as Decimal);
-            json;
+            json (simplejson, aliased to json);
 
         Functions:
             pprint();

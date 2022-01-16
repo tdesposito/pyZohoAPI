@@ -129,7 +129,7 @@ def run_server(hostName, serverPort):
     except KeyboardInterrupt:
         pass
 
-    server.server_close()s
+    server.server_close()
 
 
 if __name__ == "__main__":

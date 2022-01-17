@@ -1,5 +1,5 @@
 [tool.bumpytrack]
-current_version = "0.9.1"
+current_version = "0.10.0"
 git_commit = true
 git_tag = true
 

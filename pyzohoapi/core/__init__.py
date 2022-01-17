@@ -153,13 +153,13 @@ class ZohoAPIBase:
                     return rsp
 
     def delete(self, urlFragment):
-        url = f"{self._endpoint}/{urlFragment}?organization={self._org}"
+        url = f"{self._endpoint}/{urlFragment}?organization_id={self._org}"
         self.log(f"DELETE {url}")
         rsp = self.do_request(requests.delete, url)
         return rsp.ok
 
     def get(self, urlFragment, queryString):
-        url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        url = f"{self._endpoint}/{urlFragment}?organization_id={self._org}&{queryString}"
         self.log(f"GET {url}")
         rsp = self.do_request(requests.get, url)
         if rsp.headers['content-type'].startswith("application/json"):
@@ -181,7 +181,7 @@ class ZohoAPIBase:
         self._logger.log(level, f"{self.__class__.__name__} (Org# {self._org}): {message}")
 
     def post(self, urlFragment, data=None, queryString="", files=None):
-        url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        url = f"{self._endpoint}/{urlFragment}?organization_id={self._org}&{queryString}"
         self.log(f"POST {url}")
         rsp = self.do_request(requests.post, url, data, files)
         if rsp.headers['content-type'].startswith("application/json"):
@@ -195,7 +195,7 @@ class ZohoAPIBase:
         }
 
     def put(self, urlFragment, data, queryString):
-        url = f"{self._endpoint}/{urlFragment}?organization={self._org}&{queryString}"
+        url = f"{self._endpoint}/{urlFragment}?organization_id={self._org}&{queryString}"
         self.log(f"PUT {url}")
         rsp = self.do_request(requests.put, url, data)
         if rsp.headers['content-type'].startswith("application/json"):

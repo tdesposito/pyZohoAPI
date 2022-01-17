@@ -8,7 +8,16 @@ particular Zoho object. In all other cases, the Python object is a List-of those
 Zoho objects. Except if you pass NO parameters, then you get a "New" object. If
 you then iterate on it, it becomes a list. Strange but true.
 
+```{note}
+**Updated in v0.10.0**: Numeric field(s) in a Zoho object are mapped to a
+`decimal.Decimal` to reduce or eliminate floating-point errors when doing math
+on currency values. This should be largely transparent, but there may be cases
+where you'll need to write your calculative operations with `decimal.Decimal`
+objects explicitly.
+```
+
 ## Common Methods
+
 These are the methods available in EVERY Zoho object. Not every method makes
 sense in every context, and in those cases the method will generally No-op.
 
@@ -18,7 +27,9 @@ As the header of this section suggests, there are also object-specific methods.
 These are documented in the [Object Type Reference](/objrefs/index.md) section.
 
 ### Accessor/Constructor
+
 To get an object of a particular type, you do something of the form:
+
 ```{code-block} python
 >>> obj = api.ObjectType()
 >>> print(obj)
@@ -26,6 +37,7 @@ New ObjectType
 ```
 
 If you know the Zoho ID of the object you want, then:
+
 ```{code-block} python
 >>> obj = api.ObjectType(id)
 >>> print(obj)
@@ -33,21 +45,25 @@ ObjectType #9876543210987654321
 ```
 
 Or you can specify API search criteria as key/value parameters:
+
 ```{code-block} python
 >>> obj = api.ObjectType(search_criteria="9876543210987654321")
 >>> print(obj)
 List of ObjectType objects
 ```
+
 ```{note}
 The above are (I hope clearly) just examples and are not directly usable.
 There's no Zoho object called (as of this writing) "ObjectType".
 ```
 
 ### `get()`
+
 Implements the `get()` semantics of a dictionary. Use this just like the native
 function.
 
 ### `Create()`
+
 ```{code-block} python
 >>> item = inventory.Item()
 >>> item.name = "Test Item"
@@ -55,6 +71,7 @@ function.
 >>> item.Create()
 Item #9876543210987654321
 ```
+
 There is no checking to ensure all required fields are set, nor that any of the
 values make sense. If the object was created in Zoho, *self* gets an `ID` and
 is updated with all default fields Zoho provided.
@@ -62,6 +79,7 @@ is updated with all default fields Zoho provided.
 Calling `Create()` on a not-New object raises an exception.
 
 ### `Delete()`
+
 ```{code-block} python
 >>> item = inventory.Item(id)
 >>> item.ID
@@ -73,6 +91,7 @@ False
 >>> item.item_id
 None
 ```
+
 After deleting the object from Zoho, all the field data is still available in
 the Python object, so in theory you could re-create the object by calling
 `Create()`, or modify it and then re-create. YMMV. Of course, you'll get a
@@ -81,6 +100,7 @@ new `ID` in that case.
 Calling `Delete()` on a List-of or New object raises an exception.
 
 ### `First()`
+
 `First()` returns the first object found by a search; if called on a new or
 mapped object, it returns *self*, so it's safe to use anywhere. Useful if you
 know your search will only return one result.
@@ -92,10 +112,12 @@ True
 >>> user.email
 'test@example.com'
 ```
+
 **_Updated in v0.7.2_**: Keyword arguments provided to `First()` will be used as
 a filter, in the manner of `Iter()`, to determine which object counts as
 "first." The filtered attributes **MUST** exist in the List-of object
 attributes. For example:
+
 ```{code-block} python
 >>> user = inventory.User().First(status="inactive")
 >>> user.IsLoaded:
@@ -105,14 +127,18 @@ True
 ```
 
 ### `GetRelated()`
+
 For object types which includes references to other object types,
 `GetRelated()` will return that object:
+
 ```{code-block} python
 >>> contact = inventory.SalesOrder(id).GetRelated(inventory.Contact, 'customer_id')
 >>> contact.company_name
 Acme International
 ```
+
 `GetRelated()` is a more convenient and safe version of:
+
 ```{code-block} python
 >>> so = inventory.SalesOrder(id)
 >>> contact = inventory.Contact(so.customer_id)
@@ -121,8 +147,10 @@ Acme International
 ```
 
 ### `Iter()` and `__iter__()`
+
 We handle pagination of List-of objects transparently, so you can treat List-of
 objects as iterables:
+
 ```{code-block} python
 >>> for invoice in inventory.Invoice(date="2021-01-01", status="paid"):
 ...   invoice
@@ -130,6 +158,7 @@ Invoice #9876543210987654321
 Invoice #9876543210987654322
 Invoice #9876543210987654323
 ```
+
 This has some potential drawbacks.
 
 If your search criteria is too broad, the list could be much longer than you
@@ -139,6 +168,7 @@ retrieved, costing you ***lots*** of API calls.
 If you only need values from fields which are already in the search results,
 and you don't need to manipulate each individual object, use `Iter()`
 with the `raw` flag:
+
 ```{code-block} python
 >>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
 >>> for invoice in paid_today.Iter(raw=True):
@@ -157,6 +187,7 @@ for getting values.
 
 You can also filter the list using `Iter()`. The caveat is that the field(s)
 you're filtering on must exist in the search results:
+
 ```{code-block} python
 >>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
 >>> for invoice in paid_today.Iter(currency_code="USD", due_date="2021-02-28"):
@@ -166,6 +197,7 @@ Invoice #9876543210987654323
 ```
 
 If you need a more complex filter, pass a function as the first parameter:
+
 ```{code-block} python
 >>> paid_today = inventory.Invoice(date="2021-01-01", status="paid")
 >>> for invoice in paid_today.Iter(lambda inv: inv.total > 1000.00):
@@ -175,8 +207,10 @@ Invoice #9876543210987654323
 ```
 
 ### `IterRelatedList()`
+
 For objects which include one or more lists of references to other object types,
 you can get each of those objects:
+
 ```{code-block} python
 >>> salesorder.line_items
 [{'item_id': "123", ...}, {'item_id': "345", ...}]
@@ -187,10 +221,12 @@ Item #345
 ```
 
 ### `MapRelatedList()`
+
 For objects which include one or more lists of references to other object types,
 `MapRelatedList()` iterates over such a list, returning a composite object
 consisting of the data from the target list, and the related object. A (slightly
 simplified) example might help:
+
 ```{code-block} python
 >>> salesorder.line_items
 [{'item_id': "123", ...}, {'item_id': "345", ...}]
@@ -205,8 +241,10 @@ Item #345
 ```
 
 ### `Update()`
+
 Changes you make to the fields in an existing Zoho object are pushed into Zoho
 by calling `Update()`.
+
 ```{code-block} python
 >>> salesorder.line_items.append({'item_id':"9876543210987654321", 'quantity': 2})
 >>> salesorder.shipping_charges += 12.50
@@ -215,9 +253,12 @@ SalesOrder #9876543210987654321
 ```
 
 ## Object Properties
+
 ### `ID`
+
 Each Zoho object type has a different "id" field, but they are mapped to the
 `ID` property of the corresponding Python object. For example:
+
 ```{code-block} python
 >>> customer = inventory.Contact(id)
 >>> customer.ID == customer.contact_id
@@ -229,9 +270,11 @@ True
 ```
 
 ### `Number`
+
 Some, but not all, Zoho object types have a "number" field. These are exposed
 via the `Number` property. If the underlying object doesn't have a "number"
 field, using the `Number` property will raise a `KeyError`.
+
 ```{code-block} python
 >>> invoice = inventory.Invoice(id)
 >>> invoice.Number
@@ -244,20 +287,25 @@ KeyError: 'item_number'
 ```
 
 ### `IsDeleted`
+
 *True* if the object has been deleted from Zoho. The data contained within the
 object is still available, except the object's native \*\_id field, which will
 be *None*. The `ID` property will be *False*. See [`Delete()`](#delete).
 
 ### `IsList`
+
 *True* if the object is a List-of Zoho objects.
+
 ```{code-block} python
 >>> inventory.SalesOrder(customer_id="9876543210987654321").IsList
 True
 ```
 
 ### `IsLoaded`
+
 *True* if we've loaded data from Zoho. This is helpful for testing if an
 object was available in Zoho.
+
 ```{code-block} python
 >>> inventory.SalesOrder(id).IsLoaded
 True

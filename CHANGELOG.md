@@ -4,9 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.10.0](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.10.0) - 2022-01-17
+
+<small>[Compare with v0.9.1](https://github.com/tdesposito/pyZohoAPI/compare/v0.9.1...v0.10.0)</small>
+
+### Added
+- Added automatic decimal.decimal usage in zohoobjects ([d786e40](https://github.com/tdesposito/pyZohoAPI/commit/d786e4005ea888295989d58d73d4198d9e689997) by Todd Esposito).
+- Add decimal.decimal note to docs ([45694f7](https://github.com/tdesposito/pyZohoAPI/commit/45694f7eac56bff2cb739b2336c5aeac1faf6bf4) by Todd Esposito).
+
+### Fixed
+- Fix typo ([93645ee](https://github.com/tdesposito/pyZohoAPI/commit/93645ee805fe5eedf1a1a8cb9ced0d3939fc4ccc) by Todd Esposito).
+- Fixed parameter name in __init__.py ([99c02c9](https://github.com/tdesposito/pyZohoAPI/commit/99c02c93a4576815800436cf67eef0b89cc1697c) by Shubham Agawane).
+
+
 ## [v0.9.1](https://github.com/tdesposito/pyZohoAPI/releases/tag/v0.9.1) - 2021-09-30
 
 <small>[Compare with v0.9.0](https://github.com/tdesposito/pyZohoAPI/compare/v0.9.0...v0.9.1)</small>
+
+### Changed
+- Changelog ([776354a](https://github.com/tdesposito/pyZohoAPI/commit/776354a49e330ef8cefbd610c69ab211408ffeb6) by Todd Esposito).
 
 ### Fixed
 - Fix shipmentorder key ([a52891f](https://github.com/tdesposito/pyZohoAPI/commit/a52891f2866a03f53e67b9056a9f2ee0310a9a63) by Todd Esposito).

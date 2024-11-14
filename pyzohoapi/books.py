@@ -14,6 +14,7 @@ class ZohoBooks(ZohoAPIBase):
     def CompositeItem(self, *args, **kwargs): return objecttypes.CompositeItem(self, *args, **kwargs)
     def Contact(self, *args, **kwargs): return objecttypes.Contact(self, *args, **kwargs)
     def CustomerPayment(self, *args, **kwargs): return objecttypes.CustomerPayment(self, *args, **kwargs)
+    def CreditNote(self, *args, **kwargs): return objecttypes.CreditNote(self, *args, **kwargs)
     def Document(self, *args, **kwargs): return objecttypes.Document(self, *args, **kwargs)
     def Invoice(self, *args, **kwargs): return objecttypes.Invoice(self, *args, **kwargs)
     def Item(self, *args, **kwargs): return objecttypes.Item(self, *args, **kwargs)

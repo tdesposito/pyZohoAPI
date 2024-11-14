@@ -10,7 +10,7 @@ __all__ = [
     'HasActivate',
     'HasAddresses',
     'HasBundle',
-    'HasConfirm', 'HasDraft', 'HasVoid', 'HasDelivered',
+    'HasConfirm', 'HasDraft', 'HasVoid', 'HasSent', 'HasDelivered',
     'HasCustomFields',
     'HasImage',
 ]
@@ -94,6 +94,13 @@ class HasVoid(_HasStatus):
         if not self._id:
             raise ZohoInvalidOpError("Void", self)
         return self._mark('void')
+
+class HasSent(_HasStatus):
+    """Adds `Sent()`"""
+    def Sent(self):
+        if not self._id:
+            raise ZohoInvalidOpError("Sent", self)
+        return self._mark('sent')
 
 
 class _HasAspect:
